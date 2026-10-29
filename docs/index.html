@@ -121,6 +121,40 @@
   .fact b { display: block; font: 700 32px var(--display); letter-spacing: -0.02em; color: var(--sun); font-variant-numeric: tabular-nums; }
   .fact span { color: var(--muted-dark); font-size: 14px; }
 
+  /* ---------- Santé et sommeil ---------- */
+  .health { background: var(--paper); }
+  .lights { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(20,20,14,.08); }
+  .light { padding: 26px 20px 22px; display: grid; gap: 6px; align-content: start; min-height: 190px; position: relative; }
+  .light .k { font: 800 26px var(--display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .light .n { font-weight: 600; }
+  .light .d { font-size: 14px; opacity: .78; }
+  .light .glow { width: 34px; height: 34px; border-radius: 50%; margin-bottom: 10px; box-shadow: 0 0 22px 6px currentColor; background: currentColor; }
+  .l1 { background: #3a2210; color: #ffd9a8; } .l1 .glow { color: #ff8a1f; }
+  .l2 { background: #5a3412; color: #ffe7c4; } .l2 .glow { color: #ffad4a; }
+  .l3 { background: #c7652a; color: #2a1608; } .l3 .glow { color: #ffd27a; }
+  .l4 { background: #f3efe2; color: var(--ink); } .l4 .glow { color: #fff6d8; box-shadow: 0 0 22px 6px #ffe9a6; }
+  .l5 { background: #dfe8f3; color: #152033; } .l5 .glow { color: #bcd6ff; box-shadow: 0 0 22px 6px #8fb6f5; }
+  .lights-note { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 14px; font-size: 14px; color: var(--muted-light); }
+  .lights-note b { color: var(--ember); }
+  .science { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 48px 0 0; }
+  .science div { border-top: 2px solid var(--ink); padding-top: 16px; }
+  .science b { font: 700 19px var(--display); display: block; margin-bottom: 6px; }
+  .science p { margin: 0; color: var(--muted-light); font-size: 15.5px; }
+  .glasses { margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .glasses h3 { font-size: 26px; font-weight: 800; grid-column: 1 / -1; }
+  .vs { border-radius: var(--radius); padding: 28px; }
+  .vs.them { background: var(--cream-2); }
+  .vs.us { background: var(--ink); color: var(--cream); }
+  .vs .eyebrow { display: block; margin-bottom: 14px; color: var(--muted-light); }
+  .vs.us .eyebrow { color: var(--sun); }
+  .vs ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .vs li { padding-left: 22px; position: relative; }
+  .vs.them li { color: var(--muted-light); }
+  .vs.them li::before { content: "–"; position: absolute; left: 4px; }
+  .vs.us li { color: var(--cream); }
+  .vs.us li::before { content: ""; position: absolute; left: 0; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: var(--sun); }
+  .disclaimer { margin-top: 26px; font-size: 13px; color: var(--muted-light); max-width: 60em; }
+
   /* ---------- Sections crème ---------- */
   section.block { padding: 120px 0; }
   .head { max-width: 680px; margin-bottom: 56px; }
@@ -233,7 +267,12 @@
     .hero { padding: 120px 0 80px; }
     .hero-grid, .menubar-grid { grid-template-columns: 1fr; gap: 50px; }
     .c-temp, .c-sun, .c-third, .c-wide { grid-column: span 12; }
-    .pv-grid { grid-template-columns: 1fr; }
+    .pv-grid, .science { grid-template-columns: 1fr; }
+    .lights { grid-template-columns: 1fr; }
+    .light { min-height: 0; grid-template-columns: auto 1fr; column-gap: 16px; align-items: center; padding: 18px 20px; }
+    .light .glow { grid-row: span 3; margin: 0; }
+    .glasses { grid-template-columns: 1fr; }
+    .lights-note .side { display: none; }
     .panel { margin: 0 auto; }
     nav.links a:not(.btn) { display: none; }
   }
@@ -256,6 +295,7 @@
   <div class="wrap">
     <a class="brand" href="#"><img src="icon.png" alt="">Sereneye</a>
     <nav class="links" aria-label="Navigation principale">
+      <a href="#sante">Santé</a>
       <a href="#fonctions">Fonctions</a>
       <a href="#barre">Barre des menus</a>
       <a href="#prix">Prix</a>
@@ -326,6 +366,55 @@
       <div class="fact"><b>0</b><span>publicité, traceur ou abonnement</span></div>
     </div>
   </div>
+
+  <!-- Santé et sommeil -->
+  <section class="block health" id="sante">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow">Santé &amp; sommeil</span>
+        <h2>Le soir, vos yeux attendent une lumière chaude.</h2>
+        <p>La lumière d'un écran est riche en bleu, comme celle du plein jour. Le soir, elle envoie au cerveau un signal de « journée » qui peut freiner la mélatonine, l'hormone qui prépare au sommeil.</p>
+      </div>
+
+      <div class="lights reveal" role="list" aria-label="Température de couleur de différentes lumières">
+        <div class="light l1" role="listitem"><span class="glow"></span><span class="k">1900 K</span><span class="n">Flamme de bougie</span><span class="d">La lumière des soirées d'autrefois.</span></div>
+        <div class="light l2" role="listitem"><span class="glow"></span><span class="k">2700 K</span><span class="n">Ampoule classique</span><span class="d">Le salon, la lampe de chevet.</span></div>
+        <div class="light l3" role="listitem"><span class="glow"></span><span class="k">3000 K</span><span class="n">Coucher de soleil</span><span class="d">Le signal naturel du soir.</span></div>
+        <div class="light l4" role="listitem"><span class="glow"></span><span class="k">5500 K</span><span class="n">Plein jour</span><span class="d">Le soleil de midi.</span></div>
+        <div class="light l5" role="listitem"><span class="glow"></span><span class="k">6500 K</span><span class="n">Écran d'ordinateur</span><span class="d">Du « plein jour », même à minuit.</span></div>
+      </div>
+      <div class="lights-note"><span class="side">← Lumières du soir</span><span><b>Sereneye ramène votre écran vers les lumières du soir</b>, quand le soleil se couche.</span><span class="side">Lumières du jour →</span></div>
+
+      <div class="science">
+        <div class="reveal"><b>Le rythme du sommeil</b><p>Notre horloge interne se règle sur la lumière. Une lumière chaude le soir accompagne la baisse naturelle de vigilance.</p></div>
+        <div class="reveal"><b>La fatigue visuelle</b><p>Des heures devant un écran très lumineux fatiguent les yeux. Une teinte plus douce et une luminosité plus basse rendent la lecture du soir plus confortable.</p></div>
+        <div class="reveal"><b>Les recommandations</b><p>Les spécialistes du sommeil conseillent de limiter l'exposition aux écrans avant de dormir. Quand on ne peut pas l'éviter, réchauffer la lumière est un bon réflexe.</p></div>
+      </div>
+
+      <div class="glasses">
+        <h3 class="reveal">Et les lunettes anti-lumière bleue ?</h3>
+        <div class="vs them reveal">
+          <span class="eyebrow">Lunettes anti-lumière bleue</span>
+          <ul>
+            <li>Plusieurs dizaines d'euros, parfois plus</li>
+            <li>À penser à mettre et à retirer</li>
+            <li>Une teinte fixe, toute la journée</li>
+            <li>Les couleurs sont faussées partout, même sur vos photos</li>
+          </ul>
+        </div>
+        <div class="vs us reveal">
+          <span class="eyebrow">Sereneye</span>
+          <ul>
+            <li>2,49 € une seule fois, sur tous vos Mac</li>
+            <li>S'active tout seul au coucher du soleil</li>
+            <li>Teinte réglable de 1900 K à 6500 K</li>
+            <li>Se met en pause pour vos photos et vidéos</li>
+          </ul>
+        </div>
+      </div>
+      <p class="disclaimer">Sereneye est un outil de confort visuel, pas un dispositif médical. En cas de troubles de la vue ou du sommeil, parlez-en à un professionnel de santé.</p>
+    </div>
+  </section>
 
   <!-- Fonctions -->
   <section class="block" id="fonctions">
