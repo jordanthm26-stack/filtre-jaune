@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sereneye — La lumière du soir, douce pour vos yeux</title>
-<meta name="description" content="Sereneye réchauffe les couleurs de votre Mac le soir pour reposer vos yeux. Température, luminosité, programmation au coucher du soleil. Essai gratuit de 7 jours.">
-<meta property="og:title" content="Sereneye — La lumière du soir, douce pour vos yeux">
-<meta property="og:description" content="Le filtre de lumière bleue élégant pour Mac. Essai gratuit de 7 jours, puis achat unique.">
+<title>Sereneye — Evening light, gentle on your eyes</title>
+<meta name="description" content="Sereneye warms your Mac's colors in the evening to rest your eyes. Temperature, brightness, sunset schedule. 7-day free trial. Available in 12 languages.">
+<meta property="og:title" content="Sereneye — Evening light, gentle on your eyes">
+<meta property="og:description" content="The elegant blue light filter for Mac. 7-day free trial, then a one-time purchase.">
 <meta property="og:image" content="https://sereneye.com/icon.png">
 <link rel="icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,6 +54,12 @@
   .btn-ghost { background: transparent; color: var(--cream); border: 1px solid var(--ink-line); }
   .btn-ghost:hover { border-color: var(--muted-dark); }
   nav.links .btn { padding: 9px 16px; font-size: 14px; color: var(--ink); }
+  /* Menu des langues (drapeau + nom) */
+  .lang-select { font: 500 14px var(--body); color: var(--cream); background: rgba(31, 31, 23, .7); border: 1px solid var(--ink-line); border-radius: 999px; padding: 8px 30px 8px 14px; cursor: pointer; max-width: 210px;
+    appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a9a593' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 10px; }
+  .lang-select:hover { border-color: var(--muted-dark); }
+  .lang-select:focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; }
+  .lang-select option { color: #14140e; background: #fbf9f2; }
   .btn:focus-visible, nav.links a:focus-visible, .chip:focus-visible, input[type="range"]:focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; }
 
   /* ---------- Héros (nuit) ---------- */
@@ -275,6 +281,7 @@
     .lights-note .side { display: none; }
     .panel { margin: 0 auto; }
     nav.links a:not(.btn) { display: none; }
+    nav.links { gap: 10px; }
   }
   @media (max-width: 640px) {
     body { font-size: 16px; }
@@ -285,22 +292,23 @@
     .pricing { grid-template-columns: 1fr; }
     .c-temp { min-height: 380px; }
     .panel-mini { display: none; }
+    nav.links .btn { display: none; }
     .win { width: 70%; left: 15%; }
   }
 </style>
-</head>
 <body>
 
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#"><img src="icon.png" alt="">Sereneye</a>
-    <nav class="links" aria-label="Navigation principale">
-      <a href="#sante">Santé</a>
-      <a href="#fonctions">Fonctions</a>
-      <a href="#barre">Barre des menus</a>
-      <a href="#prix">Prix</a>
-      <a href="#faq">Questions</a>
-      <a class="btn btn-sun" href="#prix">Essai gratuit</a>
+    <nav class="links" aria-label="Main navigation" data-i18n-attr="aria-label:navLabel">
+      <a href="#sante" data-i18n="navHealth">Health</a>
+      <a href="#fonctions" data-i18n="navFeatures">Features</a>
+      <a href="#barre" data-i18n="navMenuBar">Menu bar</a>
+      <a href="#prix" data-i18n="navPricing">Pricing</a>
+      <a href="#faq" data-i18n="navFaq">FAQ</a>
+      <select id="lang-select" class="lang-select" aria-label="Language" data-i18n-attr="aria-label:langLabel"></select>
+      <a class="btn btn-sun" href="#prix" data-i18n="navTrial">Free trial</a>
     </nav>
   </div>
 </header>
@@ -310,31 +318,31 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">Pour Mac · Mac App Store</span>
-        <h1>La lumière du soir, <em>douce</em> pour vos yeux.</h1>
-        <p class="lede">Sereneye réchauffe les couleurs de votre écran quand la nuit tombe. Moins de lumière bleue, moins de fatigue visuelle, et un sommeil qui vient plus naturellement.</p>
+        <span class="eyebrow" data-i18n="heroEyebrow">For Mac · Mac App Store</span>
+        <h1 data-i18n="heroTitle">Evening light, <em>gentle</em> on your eyes.</h1>
+        <p class="lede" data-i18n="heroLede">Sereneye warms your screen's colors as night falls. Less blue light, less eye strain, and sleep that comes more naturally.</p>
         <div class="cta-row">
           <a class="btn btn-sun" href="#prix">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg>
-            Bientôt sur le Mac App Store
+            <span data-i18n="soon">Coming soon to the Mac App Store</span>
           </a>
-          <a class="btn btn-ghost" href="#fonctions">Découvrir les fonctions</a>
+          <a class="btn btn-ghost" href="#fonctions" data-i18n="heroDiscover">Explore the features</a>
         </div>
-        <p class="cta-note"><b>7 jours d'essai gratuit</b> · puis 2,49 € une seule fois · sans abonnement</p>
+        <p class="cta-note" data-i18n="heroNote"><b>7-day free trial</b> · then €2.49 once · no subscription</p>
       </div>
 
       <div class="mac reveal">
         <div class="screen">
           <div class="display" id="display">
-            <div class="menubar"><b></b>Finder<span>Fichier</span><span>Édition</span><span class="sp"></span>
+            <div class="menubar"><b></b>Finder<span data-i18n="mbFile">File</span><span data-i18n="mbEdit">Edit</span><span class="sp"></span>
               <svg viewBox="0 0 20 18" aria-hidden="true"><circle cx="7" cy="10" r="6" fill="#222"/><rect x="7" y="2.5" width="12" height="9" rx="2" fill="#ffd71a" stroke="#222" stroke-width="1.6"/></svg>
-              <span>Jeu. 21:42</span></div>
+              <span data-i18n="mbTime">Thu 9:42 PM</span></div>
             <div class="win"><div class="bar"><i></i><i></i><i></i></div>
               <div class="doc"><div class="t"></div><div class="l" style="width:92%"></div><div class="l" style="width:84%"></div><div class="img"></div><div class="l" style="width:88%"></div><div class="l" style="width:70%"></div><div class="l" style="width:80%"></div></div></div>
             <div class="panel-mini" aria-hidden="true">
               <div class="row"><img class="logo" src="icon.png" alt="">Sereneye<span class="sw"></span></div>
-              <div>Température</div><div class="track"><b></b></div>
-              <div>Luminosité</div><div class="track" style="background:linear-gradient(90deg,#666,#ddd)"><b style="left:85%"></b></div>
+              <div data-i18n="temperature">Temperature</div><div class="track"><b></b></div>
+              <div data-i18n="brightness">Brightness</div><div class="track" style="background:linear-gradient(90deg,#666,#ddd)"><b style="left:85%"></b></div>
             </div>
             <div class="tint" id="tint"></div>
           </div>
@@ -342,15 +350,15 @@
         <div class="stand"></div><div class="base"></div>
 
         <div class="control">
-          <div class="control-top"><span>Essayez : faites glisser la température</span><span class="kelvin" id="kelvin">3400 K</span></div>
-          <label for="temp" class="visually-hidden" style="position:absolute;left:-9999px">Température de couleur</label>
+          <div class="control-top"><span data-i18n="tryIt">Try it: drag the temperature</span><span class="kelvin" id="kelvin">3400 K</span></div>
+          <label for="temp" class="visually-hidden" style="position:absolute;left:-9999px" data-i18n="colorTemp">Color temperature</label>
           <input type="range" id="temp" min="1900" max="6500" step="100" value="3400">
           <div class="chips" id="presets">
-            <button class="chip" data-k="1900">Bougie</button>
-            <button class="chip" data-k="2700">Incandescent</button>
-            <button class="chip on" data-k="3400">Halogène</button>
-            <button class="chip" data-k="4200">Fluorescent</button>
-            <button class="chip" data-k="6500">Neutre</button>
+            <button class="chip" data-k="1900" data-i18n="candle">Candle</button>
+            <button class="chip" data-k="2700" data-i18n="incandescent">Incandescent</button>
+            <button class="chip on" data-k="3400" data-i18n="halogen">Halogen</button>
+            <button class="chip" data-k="4200" data-i18n="fluorescent">Fluorescent</button>
+            <button class="chip" data-k="6500" data-i18n="neutral">Neutral</button>
           </div>
         </div>
       </div>
@@ -360,10 +368,10 @@
   <!-- Chiffres -->
   <div class="facts">
     <div class="wrap">
-      <div class="fact"><b>1900 K</b><span>la teinte d'une bougie</span></div>
-      <div class="fact"><b>20 %</b><span>sous la luminosité minimale du Mac</span></div>
-      <div class="fact"><b>1,4 s</b><span>de fondu, jamais d'éblouissement</span></div>
-      <div class="fact"><b>0</b><span>publicité, traceur ou abonnement</span></div>
+      <div class="fact"><b>1900 K</b><span data-i18n="fact1">the glow of a candle</span></div>
+      <div class="fact"><b>20 %</b><span data-i18n="fact2">below the Mac's minimum brightness</span></div>
+      <div class="fact"><b data-i18n="fact3n">1.4 s</b><span data-i18n="fact3">fade, never dazzling</span></div>
+      <div class="fact"><b>0</b><span data-i18n="fact4">ads, trackers or subscriptions</span></div>
     </div>
   </div>
 
@@ -371,48 +379,48 @@
   <section class="block health" id="sante">
     <div class="wrap">
       <div class="head reveal">
-        <span class="eyebrow">Santé &amp; sommeil</span>
-        <h2>Le soir, vos yeux attendent une lumière chaude.</h2>
-        <p>La lumière d'un écran est riche en bleu, comme celle du plein jour. Le soir, elle envoie au cerveau un signal de « journée » qui peut freiner la mélatonine, l'hormone qui prépare au sommeil.</p>
+        <span class="eyebrow" data-i18n="healthEyebrow">Health &amp; sleep</span>
+        <h2 data-i18n="healthTitle">In the evening, your eyes expect warm light.</h2>
+        <p data-i18n="healthLede">Screen light is rich in blue, like daylight. In the evening, it sends your brain a “daytime” signal that can suppress melatonin, the hormone that prepares you for sleep.</p>
       </div>
 
-      <div class="lights reveal" role="list" aria-label="Température de couleur de différentes lumières">
-        <div class="light l1" role="listitem"><span class="glow"></span><span class="k">1900 K</span><span class="n">Flamme de bougie</span><span class="d">La lumière des soirées d'autrefois.</span></div>
-        <div class="light l2" role="listitem"><span class="glow"></span><span class="k">2700 K</span><span class="n">Ampoule classique</span><span class="d">Le salon, la lampe de chevet.</span></div>
-        <div class="light l3" role="listitem"><span class="glow"></span><span class="k">3000 K</span><span class="n">Coucher de soleil</span><span class="d">Le signal naturel du soir.</span></div>
-        <div class="light l4" role="listitem"><span class="glow"></span><span class="k">5500 K</span><span class="n">Plein jour</span><span class="d">Le soleil de midi.</span></div>
-        <div class="light l5" role="listitem"><span class="glow"></span><span class="k">6500 K</span><span class="n">Écran d'ordinateur</span><span class="d">Du « plein jour », même à minuit.</span></div>
+      <div class="lights reveal" role="list" aria-label="Color temperature of different lights" data-i18n-attr="aria-label:lightsLabel">
+        <div class="light l1" role="listitem"><span class="glow"></span><span class="k">1900 K</span><span class="n" data-i18n="l1n">Candle flame</span><span class="d" data-i18n="l1d">The light of evenings past.</span></div>
+        <div class="light l2" role="listitem"><span class="glow"></span><span class="k">2700 K</span><span class="n" data-i18n="l2n">Classic bulb</span><span class="d" data-i18n="l2d">The living room, the bedside lamp.</span></div>
+        <div class="light l3" role="listitem"><span class="glow"></span><span class="k">3000 K</span><span class="n" data-i18n="l3n">Sunset</span><span class="d" data-i18n="l3d">Nature's evening signal.</span></div>
+        <div class="light l4" role="listitem"><span class="glow"></span><span class="k">5500 K</span><span class="n" data-i18n="l4n">Full daylight</span><span class="d" data-i18n="l4d">The midday sun.</span></div>
+        <div class="light l5" role="listitem"><span class="glow"></span><span class="k">6500 K</span><span class="n" data-i18n="l5n">Computer screen</span><span class="d" data-i18n="l5d">“Full daylight”, even at midnight.</span></div>
       </div>
-      <div class="lights-note"><span class="side">← Lumières du soir</span><span><b>Sereneye ramène votre écran vers les lumières du soir</b>, quand le soleil se couche.</span><span class="side">Lumières du jour →</span></div>
+      <div class="lights-note"><span class="side" data-i18n="lightsLeft">← Evening light</span><span data-i18n="lightsMid"><b>Sereneye brings your screen back to evening light</b> when the sun sets.</span><span class="side" data-i18n="lightsRight">Daylight →</span></div>
 
       <div class="science">
-        <div class="reveal"><b>Le rythme du sommeil</b><p>Notre horloge interne se règle sur la lumière. Une lumière chaude le soir accompagne la baisse naturelle de vigilance.</p></div>
-        <div class="reveal"><b>La fatigue visuelle</b><p>Des heures devant un écran très lumineux fatiguent les yeux. Une teinte plus douce et une luminosité plus basse rendent la lecture du soir plus confortable.</p></div>
-        <div class="reveal"><b>Les recommandations</b><p>Les spécialistes du sommeil conseillent de limiter l'exposition aux écrans avant de dormir. Quand on ne peut pas l'éviter, réchauffer la lumière est un bon réflexe.</p></div>
+        <div class="reveal"><b data-i18n="sc1t">Your sleep rhythm</b><p data-i18n="sc1p">Our internal clock is set by light. Warm light in the evening goes along with the natural drop in alertness.</p></div>
+        <div class="reveal"><b data-i18n="sc2t">Eye strain</b><p data-i18n="sc2p">Hours in front of a very bright screen tire the eyes. A softer tint and lower brightness make evening reading more comfortable.</p></div>
+        <div class="reveal"><b data-i18n="sc3t">The recommendations</b><p data-i18n="sc3p">Sleep specialists advise limiting screen exposure before bed. When you can't avoid it, warming the light is a good habit.</p></div>
       </div>
 
       <div class="glasses">
-        <h3 class="reveal">Et les lunettes anti-lumière bleue ?</h3>
+        <h3 class="reveal" data-i18n="glassesTitle">What about blue light glasses?</h3>
         <div class="vs them reveal">
-          <span class="eyebrow">Lunettes anti-lumière bleue</span>
+          <span class="eyebrow" data-i18n="glassesThem">Blue light glasses</span>
           <ul>
-            <li>Plusieurs dizaines d'euros, parfois plus</li>
-            <li>À penser à mettre et à retirer</li>
-            <li>Une teinte fixe, toute la journée</li>
-            <li>Les couleurs sont faussées partout, même sur vos photos</li>
+            <li data-i18n="them1">Dozens of euros, sometimes more</li>
+            <li data-i18n="them2">You have to remember to put them on and take them off</li>
+            <li data-i18n="them3">A fixed tint, all day long</li>
+            <li data-i18n="them4">Colors are off everywhere, even in your photos</li>
           </ul>
         </div>
         <div class="vs us reveal">
           <span class="eyebrow">Sereneye</span>
           <ul>
-            <li>2,49 € une seule fois, sur tous vos Mac</li>
-            <li>S'active tout seul au coucher du soleil</li>
-            <li>Teinte réglable de 1900 K à 6500 K</li>
-            <li>Se met en pause pour vos photos et vidéos</li>
+            <li data-i18n="us1">€2.49 once, on all your Macs</li>
+            <li data-i18n="us2">Turns on by itself at sunset</li>
+            <li data-i18n="us3">Adjustable tint from 1900 K to 6500 K</li>
+            <li data-i18n="us4">Pauses for your photos and videos</li>
           </ul>
         </div>
       </div>
-      <p class="disclaimer">Sereneye est un outil de confort visuel, pas un dispositif médical. En cas de troubles de la vue ou du sommeil, parlez-en à un professionnel de santé.</p>
+      <p class="disclaimer" data-i18n="disclaimer">Sereneye is a visual comfort tool, not a medical device. If you have vision or sleep problems, talk to a health professional.</p>
     </div>
   </section>
 
@@ -420,51 +428,51 @@
   <section class="block" id="fonctions">
     <div class="wrap">
       <div class="head reveal">
-        <span class="eyebrow">Fonctions</span>
-        <h2>Tout ce qu'il faut pour des soirées plus douces.</h2>
-        <p>Sereneye se règle en un geste et se fait oublier le reste du temps. Il veille sur vos yeux en silence, depuis la barre des menus.</p>
+        <span class="eyebrow" data-i18n="featEyebrow">Features</span>
+        <h2 data-i18n="featTitle">Everything you need for gentler evenings.</h2>
+        <p data-i18n="featLede">Sereneye is set up in one gesture and forgotten the rest of the time. It quietly looks after your eyes from the menu bar.</p>
       </div>
 
       <div class="features">
         <article class="card c-temp reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#14140e" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v11"/><circle cx="12" cy="17.5" r="3.5"/><path d="M15 7h2M15 10h2"/></svg></div>
-          <h3>La température qui vous ressemble</h3>
-          <p>De 1900 K, chaud comme une bougie, à 6500 K, parfaitement neutre. Cinq préréglages pour aller vite, un curseur pour la nuance exacte.</p>
+          <h3 data-i18n="f1t">A temperature that suits you</h3>
+          <p data-i18n="f1p">From 1900 K, warm as a candle, to 6500 K, perfectly neutral. Five presets to go fast, a slider for the exact shade.</p>
           <div class="scale" aria-hidden="true"><div class="grad"></div><div class="ticks"><span>1900 K</span><span>2700 K</span><span>3400 K</span><span>4200 K</span><span>6500 K</span></div></div>
         </article>
 
         <article class="card c-sun reveal">
           <div class="orb"></div>
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd71a" stroke-width="2.2" stroke-linecap="round"><path d="M4 18h16M7 18a5 5 0 0110 0M12 7v3M5.6 10.6l1.8 1.8M18.4 10.6l-1.8 1.8"/></svg></div>
-          <h3>Au coucher du soleil</h3>
-          <p>Le filtre arrive tout seul quand le soleil se couche chez vous, et s'efface à son lever. Ou bien choisissez vos propres horaires.</p>
+          <h3 data-i18n="f2t">At sunset</h3>
+          <p data-i18n="f2p">The filter comes on by itself when the sun sets where you are, and fades away at sunrise. Or choose your own hours.</p>
           <div class="times"><span>☾ 17:42</span><span>☀ 07:58</span></div>
         </article>
 
         <article class="card c-third reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd71a" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2"/></svg></div>
-          <h3>Plus sombre que sombre</h3>
-          <p>Descendez sous la luminosité minimale de macOS pour lire dans le noir sans être ébloui.</p>
+          <h3 data-i18n="f3t">Darker than dark</h3>
+          <p data-i18n="f3p">Go below macOS's minimum brightness to read in the dark without being dazzled.</p>
         </article>
         <article class="card c-third reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd71a" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9v6M14 9v6"/></svg></div>
-          <h3>Pause pour vos photos</h3>
-          <p>Photos, Final Cut, Photoshop : le filtre se met en pause tout seul pour garder les vraies couleurs.</p>
+          <h3 data-i18n="f4t">Pause for your photos</h3>
+          <p data-i18n="f4p">Photos, Final Cut, Photoshop: the filter pauses by itself to keep true colors.</p>
         </article>
         <article class="card c-third reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd71a" stroke-width="2.2" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg></div>
-          <h3>Un raccourci, et c'est tout</h3>
-          <p>Allumez, éteignez ou réchauffez la teinte au clavier, depuis n'importe quelle app. Le raccourci est à votre goût.</p>
+          <h3 data-i18n="f5t">One shortcut, that's it</h3>
+          <p data-i18n="f5p">Turn on, turn off or warm up the tint from the keyboard, in any app. The shortcut is up to you.</p>
         </article>
         <article class="card c-wide reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd71a" stroke-width="2.2" stroke-linecap="round"><path d="M3 12c3-6 15-6 18 0M3 12c3 6 15 6 18 0"/><circle cx="12" cy="12" r="2.5"/></svg></div>
-          <h3>Des transitions qui ne brusquent pas</h3>
-          <p>Chaque changement se fait en fondu. Au coucher du soleil, la teinte monte lentement pendant une heure, comme la lumière du dehors.</p>
+          <h3 data-i18n="f6t">Transitions that never jolt</h3>
+          <p data-i18n="f6p">Every change fades in. At sunset, the tint rises slowly over an hour, like the light outside.</p>
         </article>
         <article class="card c-wide reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd71a" stroke-width="2.2" stroke-linecap="round"><rect x="2" y="4" width="13" height="10" rx="2"/><rect x="9" y="10" width="13" height="10" rx="2"/></svg></div>
-          <h3>Sur tous vos écrans, à chaque réveil</h3>
-          <p>Écran externe, veille, redémarrage : Sereneye revient toujours avec vos réglages, sans rien vous demander.</p>
+          <h3 data-i18n="f7t">On all your screens, every time you wake</h3>
+          <p data-i18n="f7p">External display, sleep, restart: Sereneye always comes back with your settings, without asking you anything.</p>
         </article>
       </div>
     </div>
@@ -475,27 +483,27 @@
     <div class="wrap menubar-grid">
       <div class="reveal">
         <div class="head" style="margin-bottom:0">
-          <span class="eyebrow">Barre des menus</span>
-          <h2>Toujours à portée de clic.</h2>
-          <p>Un clic sur l'icône en haut de l'écran, et tout l'essentiel est là. Pas de fenêtre qui encombre, pas de réglages cachés.</p>
+          <span class="eyebrow" data-i18n="mbEyebrow">Menu bar</span>
+          <h2 data-i18n="mbTitle">Always one click away.</h2>
+          <p data-i18n="mbLede">One click on the icon at the top of the screen and everything essential is there. No cluttering window, no hidden settings.</p>
         </div>
         <ul>
-          <li><span><b>Allumer, éteindre</b>À tout moment, même avec une programmation.</span></li>
-          <li><span><b>Température et luminosité</b>Deux curseurs, effet immédiat.</span></li>
-          <li><span><b>Programmation</b>Manuel, coucher du soleil ou vos horaires.</span></li>
+          <li><span data-i18n="mb1"><b>Turn on, turn off</b>Anytime, even with a schedule.</span></li>
+          <li><span data-i18n="mb2"><b>Temperature and brightness</b>Two sliders, instant effect.</span></li>
+          <li><span data-i18n="mb3"><b>Schedule</b>Manual, sunset or your own hours.</span></li>
         </ul>
       </div>
 
-      <div class="panel reveal" aria-label="Aperçu du panneau Sereneye">
-        <div class="p-head"><img src="icon.png" alt=""><div><b>Sereneye</b><small>Nuit : s'éteindra à 07:58</small></div><span class="toggle" aria-hidden="true"></span></div>
-        <div class="p-row">Température <span>3400 K</span></div>
+      <div class="panel reveal" aria-label="Preview of the Sereneye panel" data-i18n-attr="aria-label:panelLabel">
+        <div class="p-head"><img src="icon.png" alt=""><div><b>Sereneye</b><small data-i18n="pStatus">Night: turns off at 07:58</small></div><span class="toggle" aria-hidden="true"></span></div>
+        <div class="p-row"><span data-i18n="temperature" style="color:inherit;font-weight:inherit">Temperature</span> <span>3400 K</span></div>
         <div class="p-track"><b style="left:33%"></b></div>
-        <div class="seg"><span>Bougie</span><span>Incand.</span><span class="on">Halogène</span><span>Fluo.</span><span>Jour</span></div>
-        <div class="p-row">Luminosité <span>85 %</span></div>
+        <div class="seg"><span data-i18n="pCandle">Candle</span><span data-i18n="pIncand">Incand.</span><span class="on" data-i18n="halogen">Halogen</span><span data-i18n="pFluo">Fluor.</span><span data-i18n="pDay">Day</span></div>
+        <div class="p-row"><span data-i18n="brightness" style="color:inherit;font-weight:inherit">Brightness</span> <span>85 %</span></div>
         <div class="p-track gray"><b style="left:81%"></b></div>
-        <div class="p-row">Programmation</div>
-        <div class="seg"><span>Manuel</span><span>Coucher du soleil</span><span class="on">Horaires</span></div>
-        <div class="p-hours">De <code>21:00</code> à <code>07:00</code></div>
+        <div class="p-row" data-i18n="schedule">Schedule</div>
+        <div class="seg"><span data-i18n="manual">Manual</span><span data-i18n="sunset">Sunset</span><span class="on" data-i18n="customHours">Custom hours</span></div>
+        <div class="p-hours" data-i18n="pHours">From <code>21:00</code> to <code>07:00</code></div>
       </div>
     </div>
   </section>
@@ -504,14 +512,14 @@
   <section class="block privacy">
     <div class="wrap">
       <div class="head reveal">
-        <span class="eyebrow">Respect de la vie privée</span>
-        <h2>Vos soirées ne regardent que vous.</h2>
-        <p>Sereneye fait son travail sur votre Mac, sans rien collecter de plus que nécessaire.</p>
+        <span class="eyebrow" data-i18n="pvEyebrow">Privacy</span>
+        <h2 data-i18n="pvTitle">Your evenings are your business.</h2>
+        <p data-i18n="pvLede">Sereneye does its job on your Mac, without collecting more than it needs.</p>
       </div>
       <div class="pv-grid">
-        <div class="pv reveal"><b>Votre position reste chez vous</b><p>Elle sert uniquement à calculer le coucher du soleil, directement sur votre Mac. Elle n'est jamais envoyée.</p></div>
-        <div class="pv reveal"><b>Ni publicité, ni traceur</b><p>Aucune mesure d'audience, aucun partenaire publicitaire. Juste votre adresse e-mail pour votre compte.</p></div>
-        <div class="pv reveal"><b>Un compte supprimable en un clic</b><p>Votre compte et votre e-mail s'effacent définitivement depuis l'app, quand vous le voulez.</p></div>
+        <div class="pv reveal"><b data-i18n="pv1t">Your location stays with you</b><p data-i18n="pv1p">It's only used to calculate sunset, right on your Mac. It's never sent anywhere.</p></div>
+        <div class="pv reveal"><b data-i18n="pv2t">No ads, no trackers</b><p data-i18n="pv2p">No analytics, no advertising partners. Just your email address for your account.</p></div>
+        <div class="pv reveal"><b data-i18n="pv3t">An account you can delete in one click</b><p data-i18n="pv3p">Your account and email are permanently erased from the app, whenever you want.</p></div>
       </div>
     </div>
   </section>
@@ -520,22 +528,22 @@
   <section class="block" id="prix">
     <div class="wrap">
       <div class="head reveal">
-        <span class="eyebrow">Prix</span>
-        <h2>Essayez une semaine. Gardez-le pour toujours.</h2>
-        <p>Pas d'abonnement, pas de surprise. Un essai complet, puis un achat unique si Sereneye vous plaît.</p>
+        <span class="eyebrow" data-i18n="prEyebrow">Pricing</span>
+        <h2 data-i18n="prTitle">Try it for a week. Keep it forever.</h2>
+        <p data-i18n="prLede">No subscription, no surprises. A full trial, then a one-time purchase if you like Sereneye.</p>
       </div>
       <div class="pricing">
         <div class="price reveal">
-          <span class="eyebrow">Pour commencer</span>
-          <div class="amount">0 €<small>pendant 7 jours</small></div>
-          <ul><li>Toutes les fonctions débloquées</li><li>Aucune carte bancaire demandée</li><li>Sans engagement</li></ul>
-          <a class="btn btn-ink" href="#">Bientôt sur le Mac App Store</a>
+          <span class="eyebrow" data-i18n="pr1Eyebrow">To get started</span>
+          <div class="amount" data-i18n="pr1Amount">€0<small>for 7 days</small></div>
+          <ul><li data-i18n="pr1a">Every feature unlocked</li><li data-i18n="pr1b">No credit card required</li><li data-i18n="pr1c">No commitment</li></ul>
+          <a class="btn btn-ink" href="#" data-i18n="soon">Coming soon to the Mac App Store</a>
         </div>
         <div class="price star reveal">
           <span class="eyebrow">All Time</span>
-          <div class="amount">2,49 €<small>une seule fois</small></div>
-          <ul><li>Sereneye pour toujours</li><li>Sur tous vos Mac, avec votre identifiant Apple</li><li>Toutes les futures mises à jour</li></ul>
-          <a class="btn btn-sun" href="#">Bientôt sur le Mac App Store</a>
+          <div class="amount" data-i18n="pr2Amount">€2.49<small>once</small></div>
+          <ul><li data-i18n="pr2a">Sereneye forever</li><li data-i18n="pr2b">On all your Macs, with your Apple Account</li><li data-i18n="pr2c">All future updates</li></ul>
+          <a class="btn btn-sun" href="#" data-i18n="soon">Coming soon to the Mac App Store</a>
         </div>
       </div>
     </div>
@@ -544,13 +552,14 @@
   <!-- FAQ -->
   <section class="block" id="faq" style="padding-top:0">
     <div class="wrap">
-      <div class="head reveal"><span class="eyebrow">Questions</span><h2>Bon à savoir.</h2></div>
+      <div class="head reveal"><span class="eyebrow" data-i18n="faqEyebrow">FAQ</span><h2 data-i18n="faqTitle">Good to know.</h2></div>
       <div class="faq">
-        <details><summary>Quelle différence avec Night Shift ?</summary><p>Sereneye va plus loin : une teinte beaucoup plus chaude (jusqu'à 1900 K), une luminosité sous le minimum de macOS, la pause automatique pour vos apps photo, des horaires sur mesure et un raccourci clavier.</p></details>
-        <details><summary>Est-ce que ça fonctionne avec un écran externe ?</summary><p>Oui. Le filtre s'applique à tous les écrans branchés et revient automatiquement quand vous en connectez un nouveau.</p></details>
-        <details><summary>Faut-il un abonnement ?</summary><p>Non. Après les 7 jours d'essai gratuit, un achat unique « All Time » de 2,49 € débloque Sereneye pour toujours, sur tous vos Mac.</p></details>
-        <details><summary>Quelle version de macOS faut-il ?</summary><p>macOS 13 Ventura ou plus récent, sur Mac Apple Silicon comme Intel.</p></details>
-        <details><summary>Comment contacter l'assistance ?</summary><p>Écrivez à contact@sereneye.com, ou consultez la <a href="assistance.html">page d'assistance</a>. Réponse sous 48 h.</p></details>
+        <details><summary data-i18n="q1">How is it different from Night Shift?</summary><p data-i18n="a1">Sereneye goes further: a much warmer tint (down to 1900 K), brightness below the macOS minimum, automatic pause for your photo apps, custom hours and a keyboard shortcut.</p></details>
+        <details><summary data-i18n="q2">Does it work with an external display?</summary><p data-i18n="a2">Yes. The filter applies to every connected display and comes back automatically when you plug in a new one.</p></details>
+        <details><summary data-i18n="q3">Do I need a subscription?</summary><p data-i18n="a3">No. After the 7-day free trial, a one-time “All Time” purchase of €2.49 unlocks Sereneye forever, on all your Macs.</p></details>
+        <details><summary data-i18n="q4">Which version of macOS do I need?</summary><p data-i18n="a4">macOS 13 Ventura or later, on Apple silicon and Intel Macs.</p></details>
+        <details><summary data-i18n="q5">Which languages is Sereneye available in?</summary><p data-i18n="a5">The app follows your Mac's language and is available in 12 languages: English, French, Spanish, German, Italian, Portuguese, Dutch, Japanese, Chinese, Korean, Russian and Turkish.</p></details>
+        <details><summary data-i18n="q6">How do I contact support?</summary><p data-i18n="a6">Write to contact@sereneye.com, or visit the <a href="support.html">support page</a>. We reply within 48 hours.</p></details>
       </div>
     </div>
   </section>
@@ -558,10 +567,10 @@
   <!-- Final -->
   <section class="block final">
     <div class="wrap reveal">
-      <img src="icon.png" alt="Logo de Sereneye">
-      <h2>Ce soir, offrez une pause à vos yeux.</h2>
-      <p>Sereneye arrive bientôt sur le Mac App Store, avec 7 jours d'essai gratuit.</p>
-      <div class="cta-row"><a class="btn btn-sun" href="#prix">Bientôt sur le Mac App Store</a></div>
+      <img src="icon.png" alt="Sereneye logo" data-i18n-attr="alt:logoAlt">
+      <h2 data-i18n="finalTitle">Tonight, give your eyes a break.</h2>
+      <p data-i18n="finalLede">Sereneye is coming soon to the Mac App Store, with a 7-day free trial.</p>
+      <div class="cta-row"><a class="btn btn-sun" href="#prix" data-i18n="soon">Coming soon to the Mac App Store</a></div>
     </div>
   </section>
 </main>
@@ -569,10 +578,12 @@
 <footer>
   <div class="wrap">
     <span>© 2026 Sereneye · Jordan Thomas</span>
-    <nav aria-label="Liens légaux"><a href="assistance.html">Assistance</a><a href="confidentialite.html">Confidentialité</a><span>contact@sereneye.com</span></nav>
+    <nav aria-label="Legal links" data-i18n-attr="aria-label:legalLabel"><a href="support.html" data-i18n="support">Support</a><a href="privacy.html" data-i18n="privacy">Privacy</a><span>contact@sereneye.com</span></nav>
   </div>
 </footer>
 
+<script src="lang.js"></script>
+<script>setupLanguages("home");</script>
 <script>
   document.documentElement.classList.add("js");
 

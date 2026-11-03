@@ -17,40 +17,46 @@
   h2 { font-size: 20px; margin-top: 32px; border-left: 4px solid var(--accent); padding-left: 10px; }
   .muted { color: var(--muted); font-size: 15px; }
   a { color: inherit; }
+  .lang-select { font: 500 14px -apple-system, system-ui, sans-serif; color: var(--text); background: transparent; border: 1px solid var(--muted); border-radius: 999px; padding: 6px 12px; cursor: pointer; max-width: 200px; }
+  .lang-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* Téléphone : le menu des langues passe sur sa propre ligne, au-dessus du titre */
+  @media (max-width: 560px) { header { flex-wrap: wrap; } header .lang { order: -1; flex-basis: 100%; max-width: none; margin: 0 0 8px; } }
 </style>
 </head>
 <body>
 <main>
   <header>
     <img src="icon.png" alt="">
-    <div><h1>Privacy policy</h1><div class="muted">Sereneye · updated November 3, 2026</div></div>
-    <a class="lang muted" href="confidentialite.html" hreflang="fr" lang="fr">Français</a>
+    <div><h1 data-i18n="p1">Privacy policy</h1><div class="muted" data-i18n="p2">Sereneye · updated November 3, 2026</div></div>
+    <select id="lang-select" class="lang lang-select" aria-label="Language"></select>
   </header>
 
-  <p>Sereneye is a blue light filter for Mac. This page explains what data the app uses. In short: <strong>only your email address and a record of your Sereneye purchases are kept, for your account</strong>, and you can delete everything at any time.</p>
+  <p data-i18n="p3">Sereneye is a blue light filter for Mac. This page explains what data the app uses. In short: <strong>only your email address and a record of your Sereneye purchases are kept, for your account</strong>, and you can delete everything at any time.</p>
 
-  <h2>Your account</h2>
-  <p>Sereneye requires a free account, created with your email address and a password. Your address is only used to sign you in, confirm your account and reset your password. It is never sold or used for advertising. Accounts are hosted by Supabase, on servers located in the European Union. Your password is stored encrypted: nobody, not even us, can read it. The language of the app is also saved in your account, so emails are sent in your language.</p>
-  <p><strong>Delete your account:</strong> in the app window, “Account” row → “Delete my account…”, or the Sereneye menu → “Delete my account…”. Your account and email address are then permanently erased.</p>
+  <h2 data-i18n="p4">Your account</h2>
+  <p data-i18n="p5">Sereneye requires a free account, created with your email address and a password. Your address is only used to sign you in, confirm your account and reset your password. It is never sold or used for advertising. Accounts are hosted by Supabase, on servers located in the European Union. Your password is stored encrypted: nobody, not even us, can read it. The language of the app is also saved in your account, so emails are sent in your language.</p>
+  <p data-i18n="p6"><strong>Delete your account:</strong> in the app window, “Account” row → “Delete my account…”, or the Sereneye menu → “Delete my account…”. Your account and email address are then permanently erased.</p>
 
-  <h2>No ads, no trackers</h2>
-  <p>The app contains no advertising, no analytics and no trackers.</p>
+  <h2 data-i18n="p7">No ads, no trackers</h2>
+  <p data-i18n="p8">The app contains no advertising, no analytics and no trackers.</p>
 
-  <h2>Location</h2>
-  <p>If you choose “Sunset” in the schedule, the app asks for your approximate location. It is only used to calculate sunrise and sunset times, right on your Mac. It is never sent or shared. You can remove this permission at any time in System Settings → Privacy &amp; Security → Location Services.</p>
+  <h2 data-i18n="p9">Location</h2>
+  <p data-i18n="p10">If you choose “Sunset” in the schedule, the app asks for your approximate location. It is only used to calculate sunrise and sunset times, right on your Mac. It is never sent or shared. You can remove this permission at any time in System Settings → Privacy &amp; Security → Location Services.</p>
 
-  <h2>Purchases</h2>
-  <p>The free trial and the “All Time” purchase go through Apple's App Store. Payment is handled entirely by Apple; the app never receives your bank details or personal information. See <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a>.</p>
-  <p>After your trial starts or after a purchase, Sereneye sends you a confirmation email. To do this, the app sends the proof of purchase signed by Apple. We only keep the transaction number, the item purchased and its date, linked to your account, so the same confirmation is never sent twice. This information is erased with your account.</p>
+  <h2 data-i18n="p11">Purchases</h2>
+  <p data-i18n="p12">The free trial and the “All Time” purchase go through Apple's App Store. Payment is handled entirely by Apple; the app never receives your bank details or personal information. See <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a>.</p>
+  <p data-i18n="p13">After your trial starts or after a purchase, Sereneye sends you a confirmation email. To do this, the app sends the proof of purchase signed by Apple. We only keep the transaction number, the item purchased and its date, linked to your account, so the same confirmation is never sent twice. This information is erased with your account.</p>
 
-  <h2>Emails</h2>
-  <p>Sereneye's emails (account confirmation, forgotten password, trial or purchase confirmation) are sent by Brevo, an email service based in France. They are only emails related to your account: no newsletters and no advertising.</p>
+  <h2 data-i18n="p14">Emails</h2>
+  <p data-i18n="p15">Sereneye's emails (account confirmation, forgotten password, trial or purchase confirmation) are sent by Brevo, an email service based in France. They are only emails related to your account: no newsletters and no advertising.</p>
 
-  <h2>Settings stored on your Mac</h2>
-  <p>Your settings (temperature, brightness, paused apps, shortcut…) are stored only on your Mac. They are deleted if you delete the app.</p>
+  <h2 data-i18n="p16">Settings stored on your Mac</h2>
+  <p data-i18n="p17">Your settings (temperature, brightness, paused apps, shortcut…) are stored only on your Mac. They are deleted if you delete the app.</p>
 
-  <h2>Contact</h2>
-  <p>For any question: <a href="mailto:contact@sereneye.com">contact@sereneye.com</a>.</p>
+  <h2 data-i18n="p18">Contact</h2>
+  <p data-i18n="p19">For any question: <a href="mailto:contact@sereneye.com">contact@sereneye.com</a>.</p>
 </main>
+<script src="lang.js"></script>
+<script>setupLanguages("privacy", { fr: "confidentialite.html" });</script>
 </body>
 </html>

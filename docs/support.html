@@ -18,49 +18,55 @@
   .muted { color: var(--muted); font-size: 15px; }
   .contact { background: var(--accent); color: #1a1a12; border-radius: 12px; padding: 16px 20px; }
   a { color: inherit; }
+  .lang-select { font: 500 14px -apple-system, system-ui, sans-serif; color: var(--text); background: transparent; border: 1px solid var(--muted); border-radius: 999px; padding: 6px 12px; cursor: pointer; max-width: 200px; }
+  .lang-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* Téléphone : le menu des langues passe sur sa propre ligne, au-dessus du titre */
+  @media (max-width: 560px) { header { flex-wrap: wrap; } header .lang { order: -1; flex-basis: 100%; max-width: none; margin: 0 0 8px; } }
 </style>
 </head>
 <body>
 <main>
   <header>
     <img src="icon.png" alt="">
-    <div><h1>Support</h1><div class="muted">Sereneye for Mac</div></div>
-    <a class="lang muted" href="assistance.html" hreflang="fr" lang="fr">Français</a>
+    <div><h1 data-i18n="s1">Support</h1><div class="muted" data-i18n="s2">Sereneye for Mac</div></div>
+    <select id="lang-select" class="lang lang-select" aria-label="Language"></select>
   </header>
 
-  <p class="contact">A question or a problem? Write to <a href="mailto:contact@sereneye.com"><strong>contact@sereneye.com</strong></a>. We reply within 48 hours.</p>
+  <p class="contact" data-i18n="s3">A question or a problem? Write to <a href="mailto:contact@sereneye.com"><strong>contact@sereneye.com</strong></a>. We reply within 48 hours.</p>
 
-  <h2>Where is the app?</h2>
-  <p>Sereneye lives in the menu bar, at the top right of your screen (a circle and screen icon). Click it to turn the filter on and adjust the temperature and brightness. “Open Sereneye…” shows all the settings. Right-click the icon to turn the filter on or off instantly.</p>
+  <h2 data-i18n="s4">Where is the app?</h2>
+  <p data-i18n="s5">Sereneye lives in the menu bar, at the top right of your screen (a circle and screen icon). Click it to turn the filter on and adjust the temperature and brightness. “Open Sereneye…” shows all the settings. Right-click the icon to turn the filter on or off instantly.</p>
 
-  <h2>I can't see the icon in the menu bar</h2>
-  <p>Open System Settings → Menu Bar and make sure Sereneye is turned on under “Allow in the Menu Bar”. On MacBooks with a notch, icons can also be hidden when the menu bar is full: remove a few (hold ⌘ and drag an icon out of the bar). You can always open the app from the Applications folder to see the settings window.</p>
+  <h2 data-i18n="s6">I can't see the icon in the menu bar</h2>
+  <p data-i18n="s7">Open System Settings → Menu Bar and make sure Sereneye is turned on under “Allow in the Menu Bar”. On MacBooks with a notch, icons can also be hidden when the menu bar is full: remove a few (hold ⌘ and drag an icon out of the bar). You can always open the app from the Applications folder to see the settings window.</p>
 
-  <h2>The filter doesn't turn on at sunset</h2>
-  <p>In the “Schedule” section, choose “Sunset”, then allow location access in System Settings → Privacy &amp; Security → Location Services. Without a location, the app uses 8 PM – 7 AM. You can also choose “Custom hours” and set your own times.</p>
+  <h2 data-i18n="s8">The filter doesn't turn on at sunset</h2>
+  <p data-i18n="s9">In the “Schedule” section, choose “Sunset”, then allow location access in System Settings → Privacy &amp; Security → Location Services. Without a location, the app uses 8 PM – 7 AM. You can also choose “Custom hours” and set your own times.</p>
 
-  <h2>The colors of my photos look wrong</h2>
-  <p>Add your photo and video apps under “Pause during”: the filter pauses automatically while they are in front.</p>
+  <h2 data-i18n="s10">The colors of my photos look wrong</h2>
+  <p data-i18n="s11">Add your photo and video apps under “Pause during”: the filter pauses automatically while they are in front.</p>
 
-  <h2>I forgot my password</h2>
-  <p>In the sign-in window, choose “Sign in”, enter your email address, then click “Forgot password?”. An email lets you choose a new one.</p>
+  <h2 data-i18n="s12">I forgot my password</h2>
+  <p data-i18n="s13">In the sign-in window, choose “Sign in”, enter your email address, then click “Forgot password?”. An email lets you choose a new one.</p>
 
-  <h2>I didn't receive the confirmation email</h2>
-  <p>Check your spam folder. In the sign-in window, try to sign in: a “Resend confirmation email” button appears. If it still doesn't arrive, write to us and we'll confirm your account.</p>
+  <h2 data-i18n="s14">I didn't receive the confirmation email</h2>
+  <p data-i18n="s15">Check your spam folder. In the sign-in window, try to sign in: a “Resend confirmation email” button appears. If it still doesn't arrive, write to us and we'll confirm your account.</p>
 
-  <h2>Change the app's language</h2>
-  <p>Sereneye follows your Mac's language (12 languages, English by default). To choose another language for Sereneye only: System Settings → General → Language &amp; Region → Applications → + → Sereneye.</p>
+  <h2 data-i18n="s16">Change the app's language</h2>
+  <p data-i18n="s17">Sereneye follows your Mac's language (12 languages, English by default). To choose another language for Sereneye only: System Settings → General → Language &amp; Region → Applications → + → Sereneye.</p>
 
-  <h2>Delete my account</h2>
-  <p>In the app window, “Account” row → “Delete my account…”, or the Sereneye menu → “Delete my account…”. Your account and email address are permanently erased. Your purchase stays linked to your Apple Account.</p>
+  <h2 data-i18n="s18">Delete my account</h2>
+  <p data-i18n="s19">In the app window, “Account” row → “Delete my account…”, or the Sereneye menu → “Delete my account…”. Your account and email address are permanently erased. Your purchase stays linked to your Apple Account.</p>
 
-  <h2>Get my purchase on another Mac</h2>
-  <p>Sign in to the App Store with the same Apple Account, open Sereneye, then click “Restore purchases” in the purchase window or in the app menu.</p>
+  <h2 data-i18n="s20">Get my purchase on another Mac</h2>
+  <p data-i18n="s21">Sign in to the App Store with the same Apple Account, open Sereneye, then click “Restore purchases” in the purchase window or in the app menu.</p>
 
-  <h2>Request a refund</h2>
-  <p>Refunds are handled by Apple: <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+  <h2 data-i18n="s22">Request a refund</h2>
+  <p data-i18n="s23">Refunds are handled by Apple: <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
 
-  <p class="muted"><a href="privacy.html">Privacy policy</a></p>
+  <p class="muted" data-i18n="s24"><a href="privacy.html">Privacy policy</a></p>
 </main>
+<script src="lang.js"></script>
+<script>setupLanguages("support", { fr: "assistance.html" });</script>
 </body>
 </html>
