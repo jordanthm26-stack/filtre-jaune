@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Adresse confirmée — Sereneye</title>
+<style>
+  :root { --bg: #f2efe4; --text: #1a1a12; --muted: #5c5a4f; --accent: #ffd71a; --card: #fffdf6; --line: #d9d4c3; --error: #b3261e; --ok: #1e7d32; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #1a1a12; --text: #f2efe4; --muted: #b5b2a5; --card: #24241a; --line: #3a3a2e; --error: #ff8a80; --ok: #7fd88a; } }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, system-ui, sans-serif; }
+  main { max-width: 440px; margin: 0 auto; padding: 48px 16px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+  header img { width: 64px; height: 64px; }
+  h1 { font-size: 26px; margin: 0; line-height: 1.2; }
+  .muted { color: var(--muted); font-size: 15px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card h2 { font-size: 20px; margin: 0 0 8px; }
+  .card p { margin: 0 0 12px; }
+  .card p:last-child { margin-bottom: 0; }
+  .check { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: #1a1a12; display: grid; place-items: center; font-size: 26px; font-weight: 700; margin-bottom: 16px; }
+  ol { margin: 0; padding-left: 20px; }
+  label { display: block; font-size: 15px; font-weight: 600; margin: 16px 0 6px; }
+  input { box-sizing: border-box; width: 100%; font: inherit; padding: 10px 12px; margin-bottom: 12px;
+          border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--text); }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  button { width: 100%; font: inherit; font-weight: 600; padding: 12px; border: 0; border-radius: 10px;
+           background: var(--accent); color: #1a1a12; cursor: pointer; }
+  button:disabled { opacity: .6; cursor: default; }
+  #message { min-height: 1.6em; margin: 12px 0 0; font-size: 15px; }
+  #message.error { color: var(--error); }
+  #message.ok { color: var(--ok); }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon.png" alt="">
+    <div><h1>Confirmation de l'adresse</h1><div class="muted">Compte Sereneye</div></div>
+  </header>
+
+  <section id="ok" class="card" hidden>
+    <div class="check" aria-hidden="true">✓</div>
+    <h2>Ton adresse est confirmée</h2>
+    <p>Ton compte Sereneye est prêt. Pour commencer :</p>
+    <ol>
+      <li>Retourne dans l'app Sereneye.</li>
+      <li>Choisis « Se connecter », puis entre ton adresse et ton mot de passe.</li>
+    </ol>
+  </section>
+
+  <section id="expired" class="card" hidden>
+    <h2>Ce lien n'est plus valable</h2>
+    <p>Il a déjà servi ou il a expiré. <strong>Si tu as déjà confirmé ton adresse</strong>, connecte-toi simplement dans Sereneye.</p>
+    <p>Sinon, demande un nouveau lien :</p>
+    <form id="resend">
+      <label for="email">Adresse e-mail du compte</label>
+      <input id="email" type="email" autocomplete="email" required>
+      <button id="submit" type="submit">Renvoyer l'e-mail de confirmation</button>
+      <p id="message" role="status"></p>
+    </form>
+  </section>
+
+  <p class="muted">Un problème ? Écris à <a href="mailto:contact@sereneye.com">contact@sereneye.com</a> · <a href="assistance.html">Assistance</a></p>
+</main>
+<script>
+  // Projet Supabase de Sereneye. La clé « anon » est publique par conception (la même que dans l'app).
+  const SUPABASE_URL = "https://evvurktgduhpxettqllw.supabase.co";
+  const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2dnVya3RnZHVocHhldHRxbGx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMyODAyMjgsImV4cCI6MjEwODg1NjIyOH0.3WVRYMbMP6uHLHFY8NxLx6dp2KHuyOsjQMJrehvtFho";
+
+  // Le lien de l'e-mail arrive ici après confirmation (#access_token=…&type=signup) ou avec une erreur (#error_code=…)
+  const params = new URLSearchParams(location.hash.slice(1));
+  // On retire les jetons de la barre d'adresse (historique, partage de l'URL)
+  if (location.hash) history.replaceState(null, "", location.pathname);
+  const confirmed = params.get("access_token") && ["signup", "email"].includes(params.get("type"));
+  document.getElementById(confirmed ? "ok" : "expired").hidden = false;
+
+  const message = document.getElementById("message");
+  function show(text, cls) { message.textContent = text; message.className = cls; }
+
+  document.getElementById("resend").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const button = document.getElementById("submit");
+    button.disabled = true;
+    show("Envoi…", "");
+    try {
+      const res = await fetch(SUPABASE_URL + "/auth/v1/resend?redirect_to=" + encodeURIComponent(location.origin + location.pathname), {
+        method: "POST",
+        headers: { "apikey": ANON_KEY, "Authorization": "Bearer " + ANON_KEY, "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "signup", email })
+      });
+      if (res.ok) show("C'est envoyé ! Regarde ta boîte de réception (et les courriers indésirables).", "ok");
+      else if (res.status === 429) show("Trop de demandes. Réessaie dans une minute.", "error");
+      else show("L'envoi n'a pas fonctionné (" + res.status + "). Vérifie l'adresse, puis réessaie.", "error");
+    } catch {
+      show("Pas de connexion à Internet. Vérifie ta connexion puis réessaie.", "error");
+    }
+    button.disabled = false;
+  });
+</script>
+</body>
+</html>
