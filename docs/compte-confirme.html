@@ -75,6 +75,7 @@
   if (location.hash) history.replaceState(null, "", location.pathname);
   const confirmed = params.get("access_token") && ["signup", "email"].includes(params.get("type"));
   document.getElementById(confirmed ? "ok" : "expired").hidden = false;
+  if (!confirmed) document.title = "Lien expiré — Sereneye";
 
   const message = document.getElementById("message");
   function show(text, cls) { message.textContent = text; message.className = cls; }
