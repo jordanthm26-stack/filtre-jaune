@@ -32,24 +32,27 @@
 <main>
   <header>
     <img src="icon.png" alt="">
-    <div><h1>Nouveau mot de passe</h1><div class="muted">Compte Sereneye</div></div>
+    <div><h1 data-i18n="pwH1">Nouveau mot de passe</h1><div class="muted" data-i18n="account">Compte Sereneye</div></div>
   </header>
 
   <form id="form" class="card" hidden>
-    <label for="password">Nouveau mot de passe</label>
-    <input id="password" type="password" autocomplete="new-password" minlength="6" required placeholder="6 caractères minimum">
-    <label for="confirm">Confirmation</label>
+    <label for="password" data-i18n="pwNew">Nouveau mot de passe</label>
+    <input id="password" type="password" autocomplete="new-password" minlength="6" required placeholder="6 caractères minimum" data-i18n-placeholder="pwPlaceholder">
+    <label for="confirm" data-i18n="pwConfirm">Confirmation</label>
     <input id="confirm" type="password" autocomplete="new-password" minlength="6" required>
-    <button id="submit" type="submit">Enregistrer</button>
+    <button id="submit" type="submit" data-i18n="save">Enregistrer</button>
     <p id="message" role="status"></p>
   </form>
 
-  <p id="done" class="done" hidden>C'est fait : ton mot de passe a été changé. Retourne dans Sereneye et connecte-toi avec ce nouveau mot de passe.</p>
+  <p id="done" class="done" hidden data-i18n="pwDone">C'est fait : ton mot de passe a été changé. Retourne dans Sereneye et connecte-toi avec ce nouveau mot de passe.</p>
   <p id="invalid" class="card" hidden></p>
 
-  <p class="muted">Un problème ? Écris à <a href="mailto:contact@sereneye.com">contact@sereneye.com</a> · <a href="assistance.html">Assistance</a></p>
+  <p class="muted"><span data-i18n="problem">Un problème ? Écris à</span> <a href="mailto:contact@sereneye.com">contact@sereneye.com</a> · <a href="assistance.html" data-i18n="support">Assistance</a></p>
 </main>
+<script src="i18n.js"></script>
 <script>
+  translatePage();
+  document.title = t("pwTitle") + " — Sereneye";
   // Projet Supabase de Sereneye. La clé « anon » est publique par conception (la même que dans l'app).
   const SUPABASE_URL = "https://evvurktgduhpxettqllw.supabase.co";
   const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2dnVya3RnZHVocHhldHRxbGx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMyODAyMjgsImV4cCI6MjEwODg1NjIyOH0.3WVRYMbMP6uHLHFY8NxLx6dp2KHuyOsjQMJrehvtFho";
@@ -69,9 +72,7 @@
     document.getElementById("password").focus();
   } else {
     const expired = params.get("error_code") === "otp_expired";
-    invalid.textContent = expired
-      ? "Ce lien a expiré ou a déjà servi. Dans Sereneye, clique à nouveau sur « Mot de passe oublié ? » pour recevoir un nouveau lien."
-      : "Ce lien n'est pas valide. Dans Sereneye, clique sur « Mot de passe oublié ? » pour recevoir un lien par e-mail.";
+    invalid.textContent = t(expired ? "pwExpired" : "pwInvalid");
     invalid.hidden = false;
   }
 
@@ -80,11 +81,11 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const password = document.getElementById("password").value;
-    if (password.length < 6) return show("Le mot de passe doit faire au moins 6 caractères.", true);
-    if (password !== document.getElementById("confirm").value) return show("Les deux mots de passe ne sont pas identiques.", true);
+    if (password.length < 6) return show(t("min6"), true);
+    if (password !== document.getElementById("confirm").value) return show(t("mismatch"), true);
     const button = document.getElementById("submit");
     button.disabled = true;
-    show("Enregistrement…", false);
+    show(t("saving"), false);
     try {
       const res = await fetch(SUPABASE_URL + "/auth/v1/user", {
         method: "PUT",
@@ -94,12 +95,12 @@
       if (res.ok) { form.hidden = true; document.getElementById("done").hidden = false; return; }
       const json = await res.json().catch(() => ({}));
       const code = json.error_code || json.code;
-      if (code === "same_password") show("Choisis un mot de passe différent de l'ancien.", true);
-      else if (code === "weak_password") show("Mot de passe trop faible : 6 caractères minimum.", true);
-      else if (res.status === 401 || res.status === 403) show("Ce lien a expiré. Redemande un e-mail depuis Sereneye (« Mot de passe oublié ? »).", true);
-      else show("Une erreur est survenue (" + res.status + "). Réessaie dans un instant.", true);
+      if (code === "same_password") show(t("same"), true);
+      else if (code === "weak_password") show(t("weak"), true);
+      else if (res.status === 401 || res.status === 403) show(t("linkExpired"), true);
+      else show(t("error", res.status), true);
     } catch {
-      show("Pas de connexion à Internet. Vérifie ta connexion puis réessaie.", true);
+      show(t("offline"), true);
     }
     button.disabled = false;
   });

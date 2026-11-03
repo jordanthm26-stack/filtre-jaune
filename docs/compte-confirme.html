@@ -37,34 +37,36 @@
 <main>
   <header>
     <img src="icon.png" alt="">
-    <div><h1>Confirmation de l'adresse</h1><div class="muted">Compte Sereneye</div></div>
+    <div><h1 data-i18n="confirmH1">Confirmation de l'adresse</h1><div class="muted" data-i18n="account">Compte Sereneye</div></div>
   </header>
 
   <section id="ok" class="card" hidden>
     <div class="check" aria-hidden="true">✓</div>
-    <h2>Ton adresse est confirmée</h2>
-    <p>Ton compte Sereneye est prêt. Pour commencer :</p>
+    <h2 data-i18n="okH2">Ton adresse est confirmée</h2>
+    <p data-i18n="okP">Ton compte Sereneye est prêt. Pour commencer :</p>
     <ol>
-      <li>Retourne dans l'app Sereneye.</li>
-      <li>Choisis « Se connecter », puis entre ton adresse et ton mot de passe.</li>
+      <li data-i18n="ok1">Retourne dans l'app Sereneye.</li>
+      <li data-i18n="ok2">Choisis « Se connecter », puis entre ton adresse et ton mot de passe.</li>
     </ol>
   </section>
 
   <section id="expired" class="card" hidden>
-    <h2>Ce lien n'est plus valable</h2>
-    <p>Il a déjà servi ou il a expiré. <strong>Si tu as déjà confirmé ton adresse</strong>, connecte-toi simplement dans Sereneye.</p>
-    <p>Sinon, demande un nouveau lien :</p>
+    <h2 data-i18n="expH2">Ce lien n'est plus valable</h2>
+    <p data-i18n="expP1">Il a déjà servi ou il a expiré. <strong>Si tu as déjà confirmé ton adresse</strong>, connecte-toi simplement dans Sereneye.</p>
+    <p data-i18n="expP2">Sinon, demande un nouveau lien :</p>
     <form id="resend">
-      <label for="email">Adresse e-mail du compte</label>
+      <label for="email" data-i18n="emailLabel">Adresse e-mail du compte</label>
       <input id="email" type="email" autocomplete="email" required>
-      <button id="submit" type="submit">Renvoyer l'e-mail de confirmation</button>
+      <button id="submit" type="submit" data-i18n="resendBtn">Renvoyer l'e-mail de confirmation</button>
       <p id="message" role="status"></p>
     </form>
   </section>
 
-  <p class="muted">Un problème ? Écris à <a href="mailto:contact@sereneye.com">contact@sereneye.com</a> · <a href="assistance.html">Assistance</a></p>
+  <p class="muted"><span data-i18n="problem">Un problème ? Écris à</span> <a href="mailto:contact@sereneye.com">contact@sereneye.com</a> · <a href="assistance.html" data-i18n="support">Assistance</a></p>
 </main>
+<script src="i18n.js"></script>
 <script>
+  translatePage();
   // Projet Supabase de Sereneye. La clé « anon » est publique par conception (la même que dans l'app).
   const SUPABASE_URL = "https://evvurktgduhpxettqllw.supabase.co";
   const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2dnVya3RnZHVocHhldHRxbGx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMyODAyMjgsImV4cCI6MjEwODg1NjIyOH0.3WVRYMbMP6uHLHFY8NxLx6dp2KHuyOsjQMJrehvtFho";
@@ -75,7 +77,7 @@
   if (location.hash) history.replaceState(null, "", location.pathname);
   const confirmed = params.get("access_token") && ["signup", "email"].includes(params.get("type"));
   document.getElementById(confirmed ? "ok" : "expired").hidden = false;
-  if (!confirmed) document.title = "Lien expiré — Sereneye";
+  document.title = t(confirmed ? "confirmTitle" : "expiredTitle") + " — Sereneye";
 
   const message = document.getElementById("message");
   function show(text, cls) { message.textContent = text; message.className = cls; }
@@ -85,18 +87,18 @@
     const email = document.getElementById("email").value.trim();
     const button = document.getElementById("submit");
     button.disabled = true;
-    show("Envoi…", "");
+    show(t("sending"), "");
     try {
       const res = await fetch(SUPABASE_URL + "/auth/v1/resend?redirect_to=" + encodeURIComponent(location.origin + location.pathname), {
         method: "POST",
         headers: { "apikey": ANON_KEY, "Authorization": "Bearer " + ANON_KEY, "Content-Type": "application/json" },
         body: JSON.stringify({ type: "signup", email })
       });
-      if (res.ok) show("C'est envoyé ! Regarde ta boîte de réception (et les courriers indésirables).", "ok");
-      else if (res.status === 429) show("Trop de demandes. Réessaie dans une minute.", "error");
-      else show("L'envoi n'a pas fonctionné (" + res.status + "). Vérifie l'adresse, puis réessaie.", "error");
+      if (res.ok) show(t("sent"), "ok");
+      else if (res.status === 429) show(t("rate"), "error");
+      else show(t("sendFail", res.status), "error");
     } catch {
-      show("Pas de connexion à Internet. Vérifie ta connexion puis réessaie.", "error");
+      show(t("offline"), "error");
     }
     button.disabled = false;
   });
