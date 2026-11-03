@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Nouveau mot de passe — Sereneye</title>
+<style>
+  :root { --bg: #f2efe4; --text: #1a1a12; --muted: #5c5a4f; --accent: #ffd71a; --card: #fffdf6; --line: #d9d4c3; --error: #b3261e; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #1a1a12; --text: #f2efe4; --muted: #b5b2a5; --card: #24241a; --line: #3a3a2e; --error: #ff8a80; } }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, system-ui, sans-serif; }
+  main { max-width: 440px; margin: 0 auto; padding: 48px 16px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+  header img { width: 64px; height: 64px; }
+  h1 { font-size: 26px; margin: 0; line-height: 1.2; }
+  .muted { color: var(--muted); font-size: 15px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  label { display: block; font-size: 15px; font-weight: 600; margin: 0 0 6px; }
+  input { box-sizing: border-box; width: 100%; font: inherit; padding: 10px 12px; margin-bottom: 16px;
+          border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--text); }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  button { width: 100%; font: inherit; font-weight: 600; padding: 12px; border: 0; border-radius: 10px;
+           background: var(--accent); color: #1a1a12; cursor: pointer; }
+  button:disabled { opacity: .6; cursor: default; }
+  #message { min-height: 1.6em; margin: 14px 0 0; font-size: 15px; }
+  #message.error { color: var(--error); }
+  .done { background: var(--accent); color: #1a1a12; border-radius: 12px; padding: 16px 20px; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon.png" alt="">
+    <div><h1>Nouveau mot de passe</h1><div class="muted">Compte Sereneye</div></div>
+  </header>
+
+  <form id="form" class="card" hidden>
+    <label for="password">Nouveau mot de passe</label>
+    <input id="password" type="password" autocomplete="new-password" minlength="6" required placeholder="6 caractères minimum">
+    <label for="confirm">Confirmation</label>
+    <input id="confirm" type="password" autocomplete="new-password" minlength="6" required>
+    <button id="submit" type="submit">Enregistrer</button>
+    <p id="message" role="status"></p>
+  </form>
+
+  <p id="done" class="done" hidden>C'est fait : ton mot de passe a été changé. Retourne dans Sereneye et connecte-toi avec ce nouveau mot de passe.</p>
+  <p id="invalid" class="card" hidden></p>
+
+  <p class="muted">Un problème ? Écris à <a href="mailto:contact@sereneye.com">contact@sereneye.com</a> · <a href="assistance.html">Assistance</a></p>
+</main>
+<script>
+  // Projet Supabase de Sereneye. La clé « anon » est publique par conception (la même que dans l'app).
+  const SUPABASE_URL = "https://evvurktgduhpxettqllw.supabase.co";
+  const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2dnVya3RnZHVocHhldHRxbGx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMyODAyMjgsImV4cCI6MjEwODg1NjIyOH0.3WVRYMbMP6uHLHFY8NxLx6dp2KHuyOsjQMJrehvtFho";
+
+  // Le lien de l'e-mail arrive ici avec la session de récupération dans le fragment (#access_token=…&type=recovery)
+  const params = new URLSearchParams(location.hash.slice(1));
+  const token = params.get("access_token");
+  // On retire le jeton de la barre d'adresse (historique, partage de l'URL)
+  if (location.hash) history.replaceState(null, "", location.pathname);
+
+  const form = document.getElementById("form");
+  const message = document.getElementById("message");
+  const invalid = document.getElementById("invalid");
+
+  if (token && params.get("type") === "recovery") {
+    form.hidden = false;
+    document.getElementById("password").focus();
+  } else {
+    const expired = params.get("error_code") === "otp_expired";
+    invalid.textContent = expired
+      ? "Ce lien a expiré ou a déjà servi. Dans Sereneye, clique à nouveau sur « Mot de passe oublié ? » pour recevoir un nouveau lien."
+      : "Ce lien n'est pas valide. Dans Sereneye, clique sur « Mot de passe oublié ? » pour recevoir un lien par e-mail.";
+    invalid.hidden = false;
+  }
+
+  function show(text, error) { message.textContent = text; message.className = error ? "error" : ""; }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const password = document.getElementById("password").value;
+    if (password.length < 6) return show("Le mot de passe doit faire au moins 6 caractères.", true);
+    if (password !== document.getElementById("confirm").value) return show("Les deux mots de passe ne sont pas identiques.", true);
+    const button = document.getElementById("submit");
+    button.disabled = true;
+    show("Enregistrement…", false);
+    try {
+      const res = await fetch(SUPABASE_URL + "/auth/v1/user", {
+        method: "PUT",
+        headers: { "apikey": ANON_KEY, "Authorization": "Bearer " + token, "Content-Type": "application/json" },
+        body: JSON.stringify({ password })
+      });
+      if (res.ok) { form.hidden = true; document.getElementById("done").hidden = false; return; }
+      const json = await res.json().catch(() => ({}));
+      const code = json.error_code || json.code;
+      if (code === "same_password") show("Choisis un mot de passe différent de l'ancien.", true);
+      else if (code === "weak_password") show("Mot de passe trop faible : 6 caractères minimum.", true);
+      else if (res.status === 401 || res.status === 403) show("Ce lien a expiré. Redemande un e-mail depuis Sereneye (« Mot de passe oublié ? »).", true);
+      else show("Une erreur est survenue (" + res.status + "). Réessaie dans un instant.", true);
+    } catch {
+      show("Pas de connexion à Internet. Vérifie ta connexion puis réessaie.", true);
+    }
+    button.disabled = false;
+  });
+</script>
+</body>
+</html>
