@@ -473,12 +473,15 @@
   .eye-head .eyebrow { color: var(--sun); }
   .eye-head h2 { font-size: clamp(32px, 4.6vw, 58px); line-height: 1.02; font-weight: 800; margin-top: 12px; }
   .eye-head p { color: var(--muted-dark); font-size: 18px; max-width: 42em; margin: 12px 0 22px; }
-  .eye-stage { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .eye-stage { display: block; width: min(100%, 1000px); margin-inline: auto; }
   .eye-fig { position: relative; margin: 0; border-radius: 22px; overflow: hidden; background: #14140e; }
-  .eye-fig img { width: 100%; height: auto; }
+  .eye-fig img { width: 100%; height: auto; display: block; }
   .eye-fig figcaption { position: absolute; left: 3%; top: 5%; padding: 8px 16px; border-radius: 99px; background: rgba(20, 20, 14, .78); color: var(--cream); font: 700 clamp(13px, 1.6vw, 18px) var(--display); }
-  .eye-fig.with figcaption { background: var(--sun); color: var(--ink); }
+  .eye-fig figcaption.tag-b { left: auto; right: 3%; background: var(--sun); color: var(--ink); }
+  .eye-cover { display: none; }
   .eye-note { margin: 12px 0 0; font-size: 13px; color: var(--muted-dark); }
+  .eye-credit { margin-top: 4px; font-size: 11px; opacity: .8; }
+  .eye-credit a { color: inherit; }
   .eye-more { padding: 66px 0 110px; }
   .eye-more h3 { font-size: clamp(25px, 3vw, 36px); font-weight: 800; }
   .csq { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px; }
@@ -496,14 +499,15 @@
   .eye-does li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
   .play .eye-track { height: 240vh; }
   .play .eye-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; align-items: center; padding-top: 0; overflow: hidden; }
-  .play .eye-stage { display: block; position: relative; width: min(100%, calc((100svh - 300px) * 1500 / 860)); aspect-ratio: 1500 / 860; margin-inline: auto; }
+  .play .eye-stage { position: relative; width: min(100%, calc((100svh - 300px) * 1500 / 860)); aspect-ratio: 1500 / 860; }
   .play .eye-fig { position: absolute; inset: 0; }
-  .play .eye-fig.with { opacity: 0; will-change: opacity; }
+  /* Le voile recule et dévoile la moitié droite de la photo, sans déformer l'image */
+  .play .eye-cover { display: block; position: absolute; top: 0; bottom: 0; left: 49.9%; right: 0; background: #14140e; transform-origin: right; will-change: transform; }
+  .play .eye-fig figcaption.tag-b { opacity: 0; will-change: opacity; }
   .play .eye-note { text-align: center; }
   @media (max-width: 960px) {
     .csq { grid-template-columns: 1fr 1fr; }
     .eye-does { grid-template-columns: 1fr; }
-    .eye-stage { grid-template-columns: 1fr; }
     .eye-head p { font-size: 16px; }
     .play .eye-stage { width: 100%; }
   }
@@ -685,13 +689,13 @@
           <div class="eye-head">
             <span class="eyebrow" data-i18n="eyeEyebrow">Eye health</span>
             <h2 data-i18n="eyeTitle">Your eyes, after hours on a screen.</h2>
-            <p data-i18n="eyeLede">In the evening, your screen stays as bright and blue as in broad daylight. Keep scrolling to see the difference.</p>
+            <p data-i18n="eyeLede">Long hours in front of a bright screen can leave your eyes tired. Here is why it matters in the evening.</p>
           </div>
           <div class="eye-stage">
-            <figure class="eye-fig"><img src="app/oeil-sans.jpg" width="1500" height="860" loading="lazy" alt="Illustrated eye, slightly reddened, reflecting a blue screen" data-i18n-attr="alt:eyeAltSans"><figcaption data-i18n="cmpWithout">Without Sereneye</figcaption></figure>
-            <figure class="eye-fig with" id="eye-with"><img src="app/oeil-avec.jpg" width="1500" height="860" loading="lazy" alt="Illustrated eye, clear, reflecting a warm screen" data-i18n-attr="alt:eyeAltAvec"><figcaption data-i18n="cmpWith">With Sereneye</figcaption></figure>
+            <figure class="eye-fig"><img src="app/oeil-sec.jpg" width="1500" height="860" loading="lazy" alt="Close-up photo of one eye split in two: reddened and irritated on the left, clear on the right" data-i18n-attr="alt:eyeAltSans"><span class="eye-cover" id="eye-cover" aria-hidden="true"></span><figcaption class="tag-a" data-i18n="eyeTired">Irritated eye</figcaption><figcaption class="tag-b" id="eye-tag-b" data-i18n="eyeRested">Eye at rest</figcaption></figure>
           </div>
-          <p class="eye-note" data-i18n="eyeNote">Artistic illustration: not a photo or a clinical result.</p>
+          <p class="eye-note" data-i18n="eyeNote">Illustrative photo of dry eye syndrome, made from two views: it does not show a result of the app.</p>
+          <p class="eye-note eye-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:%C4%8Cerven%C3%A9_oko.jpg" target="_blank" rel="noopener">Petra Sochová</a>, cropped, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
         </div>
       </div>
     </div>
@@ -994,7 +998,7 @@
     const cmp = $("cmp-view"), cmpEve = cmp.querySelector(".eve"), cmpLine = cmp.querySelector(".cmp-line"), cmpTrack = cmp.closest(".cmp-track");
     const lTrack = $("lights-track"), lights = [...lTrack.querySelectorAll(".light")].reverse(), kBig = $("k-big"), kSlider = $("k-slider"), kKnob = kSlider.querySelector("b"), kOrb = $("k-orb"), kCore = kOrb.firstElementChild, kTint = $("k-tint");
     const mTrack = $("menu-track"), mItems = [...mTrack.querySelectorAll("li")], realPanel = $("real-panel"), hot = $("hot");
-    const eyeTrack = $("eye-track"), eyeWith = $("eye-with");
+    const eyeTrack = $("eye-track"), eyeCover = $("eye-cover"), eyeTagB = $("eye-tag-b");
     const scrubs = [...document.querySelectorAll("[data-scrub]")];
     const heroCopy = document.querySelector(".hero-grid > div"), heroMac = document.querySelector(".mac"), heroBox = document.querySelector(".hero");
     const pill = $("warm-pill"), warmK = $("warm-k"), warmSwitch = $("warm-switch"), root = document.documentElement;
@@ -1107,9 +1111,14 @@
       }
       const ps = prog(storyT, pos);
       if (ps !== lastStory) { lastStory = ps; drawStory(ps); }
-      // L'œil sous l'écran bleu laisse place au même œil sous l'écran filtré
+      // Le défilement dévoile la moitié de la photo où l'œil est au repos
       const pe = prog(eyeT, pos);
-      if (pe !== lastEye) { lastEye = pe; put(eyeWith, "opacity", n3(smooth(.22, .78, pe))); }
+      if (pe !== lastEye) {
+        lastEye = pe;
+        const shown = smooth(.2, .8, pe);
+        put(eyeCover, "transform", `scaleX(${n3(1 - shown)})`);
+        put(eyeTagB, "opacity", n3(smooth(.5, .8, pe)));
+      }
       const pl = prog(lightT, pos);
       if (pl !== lastLights) {
         lastLights = pl;
