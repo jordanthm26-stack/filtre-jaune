@@ -21,14 +21,15 @@
     --ink: #14140e;
     --ink-2: #1f1f17;
     --ink-line: #34342a;
-    --cream: #f2efe4;
-    --cream-2: #e8e3d2;
-    --paper: #fbf9f2;
+    --pastel: #f2d6b8;
+    --cream: #f2d6b8;
+    --cream-2: #e8cba9;
+    --paper: #fbdfc3;
     --sun: #ffd71a;
     --amber: #ff9f2e;
     --ember: #e8642a;
     --muted-dark: #a9a593;
-    --muted-light: #5f5c4d;
+    --muted-light: #544f40;
     --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
     --body: "Figtree", -apple-system, "Segoe UI", sans-serif;
     --radius: 22px;
@@ -165,6 +166,7 @@
 
   /* ---------- Sections crème ---------- */
   section.block { padding: 120px 0; }
+  .health:not(.health-more) { padding-bottom: 60px; }
   .head { max-width: 680px; margin-bottom: 56px; }
   .head .eyebrow { color: var(--ember); }
   .head h2 { font-size: clamp(34px, 4.6vw, 58px); line-height: 1.02; font-weight: 800; margin-top: 16px; }
@@ -336,16 +338,6 @@
     .s-step p { font-size: 15px; }
   }
 
-  /* ---------- Filtre de la page : le site se réchauffe au fil du défilement, comme l'écran avec l'app ---------- */
-  .warm-pill { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); z-index: 60; display: none; align-items: center; gap: 9px; padding: 7px 9px 7px 8px; border-radius: 99px; background: rgba(20, 20, 14, .95); color: var(--cream); box-shadow: 0 8px 20px -10px #000, 0 0 0 1px var(--ink-line); font: 700 13px var(--display); font-variant-numeric: tabular-nums; transition: opacity .3s, transform .3s; }
-  .warm-pill img { width: 22px; height: 22px; border-radius: 6px; }
-  .warm-pill button { width: 36px; height: 21px; padding: 0; border: 0; border-radius: 99px; background: #66665c; position: relative; cursor: pointer; transition: background .2s; }
-  .warm-pill button::after { content: ""; position: absolute; left: 2px; top: 2px; width: 17px; height: 17px; border-radius: 50%; background: #fff; transition: transform .2s; }
-  .warm-pill button[aria-pressed="true"] { background: var(--amber); }
-  .warm-pill button[aria-pressed="true"]::after { transform: translateX(15px); }
-  .warm-pill button:focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; }
-  .play .warm-pill { display: flex; }
-  .warm-pill.away { opacity: 0; transform: translateY(14px); pointer-events: none; }
 
   /* ---------- Avant / après, balayé au défilement ---------- */
   .compare { background: var(--ink); color: var(--cream); padding-bottom: 60px; }
@@ -512,6 +504,31 @@
     .play .eye-stage { width: 100%; }
   }
   @media (max-width: 560px) { .csq { grid-template-columns: 1fr; } .eye-more { padding: 48px 0 80px; } }
+
+  /* ---------- Toute la page sur le même fond pastel ---------- */
+  header.top, .hero, .facts, .compare, .story, .eyes, .privacy, .final, footer {
+    --ink: var(--pastel); --ink-2: rgba(255, 255, 255, .34); --ink-line: rgba(70, 45, 20, .2); --cream: #1d1810; --muted-dark: #574f3f;
+  }
+  .btn-sun, .chip.on, .play .s-step.on::before, .s-step::before { color: #14140e; }
+  .play .s-step:not(.on)::before { color: var(--muted-dark); }
+  .hero .eyebrow, .story-intro .eyebrow, .cmp-head .eyebrow, .eye-head .eyebrow, .privacy .head .eyebrow { color: var(--ember); }
+  .hero .eyebrow::before { background: var(--ember); }
+  .hero h1 em, .fact b { color: var(--ember); }
+  .lang-select { background-color: rgba(255, 255, 255, .42); }
+  .lang-select:focus-visible, .btn:focus-visible, nav.links a:focus-visible, .chip:focus-visible, input[type="range"]:focus-visible { outline-color: var(--ember); }
+  .control { background: rgba(255, 255, 255, .38); }
+  .hero::before { background: radial-gradient(50% 45% at 50% 100%, rgba(255, 159, 46, .28), rgba(232, 100, 42, .08) 45%, transparent 70%); }
+  .final::before { background: radial-gradient(50% 50% at 50% 50%, rgba(255, 159, 46, .32), transparent 70%); }
+  .cmp-tag.a, .eye-fig figcaption.tag-a { color: #fbf4e6; }
+  .cmp-tag.b { color: #14140e; }
+  .cmp-line { background: #fbf4e6; }
+  .cmp-line::after { background: #fbf4e6; color: #14140e; }
+  .kelvin-chip { color: #fbf4e6; }
+  .eye-fig { background: var(--pastel); }
+  .play .eye-cover { background: var(--pastel); }
+  .csq-note a, .eye-credit a { color: inherit; }
+  nav.links .btn, .eye-does .gain, .eye-fig figcaption.tag-b { color: #1d1810; }
+  .btn-ghost:hover { border-color: var(--muted-dark); }
 
   /* ---------- Téléphone et tablette ---------- */
   @media (max-width: 960px) {
@@ -681,6 +698,35 @@
   </section>
 
   <!-- Santé et sommeil -->
+  <section class="block health" id="sante">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow" data-i18n="healthEyebrow">Health &amp; sleep</span>
+        <h2 data-i18n="healthTitle">In the evening, your eyes expect warm light.</h2>
+        <p data-i18n="healthLede">Screen light is rich in blue, like daylight. In the evening, it sends your brain a “daytime” signal that can suppress melatonin, the hormone that prepares you for sleep.</p>
+      </div>
+
+    </div>
+    <div class="lights-track" id="lights-track">
+      <div class="lights-pin">
+        <div class="lights" role="list" aria-label="Color temperature of different lights" data-i18n-attr="aria-label:lightsLabel">
+        <div class="light l1" role="listitem"><span class="glow"></span><span class="k">1900 K</span><span class="n" data-i18n="l1n">Candle flame</span><span class="d" data-i18n="l1d">The light of evenings past.</span></div>
+        <div class="light l2" role="listitem"><span class="glow"></span><span class="k">2700 K</span><span class="n" data-i18n="l2n">Classic bulb</span><span class="d" data-i18n="l2d">The living room, the bedside lamp.</span></div>
+        <div class="light l3" role="listitem"><span class="glow"></span><span class="k">3000 K</span><span class="n" data-i18n="l3n">Sunset</span><span class="d" data-i18n="l3d">Nature's evening signal.</span></div>
+        <div class="light l4" role="listitem"><span class="glow"></span><span class="k">5500 K</span><span class="n" data-i18n="l4n">Full daylight</span><span class="d" data-i18n="l4d">The midday sun.</span></div>
+        <div class="light l5" role="listitem"><span class="glow"></span><span class="k">6500 K</span><span class="n" data-i18n="l5n">Computer screen</span><span class="d" data-i18n="l5d">“Full daylight”, even at midnight.</span></div>
+      </div>
+        <div class="k-tint" id="k-tint" aria-hidden="true"></div>
+        <div class="k-orb" id="k-orb" aria-hidden="true"><i></i></div>
+        <div class="k-read" aria-hidden="true"><span class="k-big" id="k-big">6500 K</span><div class="k-slider" id="k-slider"><b></b></div><div class="k-ruler"><span style="left:0.00%">1900</span><span style="left:17.39%">2700</span><span style="left:32.61%">3400</span><span style="left:50.00%">4200</span><span style="left:100.00%">6500</span></div></div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="lights-note"><span class="side" data-i18n="lightsLeft">← Evening light</span><span data-i18n="lightsMid"><b>Sereneye brings your screen back to evening light</b> when the sun sets.</span><span class="side" data-i18n="lightsRight">Daylight →</span></div>
+
+    </div>
+  </section>
+
   <!-- Santé des yeux : un œil sans le filtre, le même avec, puis ce qu'il faut savoir -->
   <section class="eyes" id="yeux">
     <div class="eye-track" id="eye-track">
@@ -721,33 +767,9 @@
     </div>
   </section>
 
-  <section class="block health" id="sante">
+  <section class="block health health-more">
     <div class="wrap">
-      <div class="head reveal">
-        <span class="eyebrow" data-i18n="healthEyebrow">Health &amp; sleep</span>
-        <h2 data-i18n="healthTitle">In the evening, your eyes expect warm light.</h2>
-        <p data-i18n="healthLede">Screen light is rich in blue, like daylight. In the evening, it sends your brain a “daytime” signal that can suppress melatonin, the hormone that prepares you for sleep.</p>
-      </div>
-
-    </div>
-    <div class="lights-track" id="lights-track">
-      <div class="lights-pin">
-        <div class="lights" role="list" aria-label="Color temperature of different lights" data-i18n-attr="aria-label:lightsLabel">
-        <div class="light l1" role="listitem"><span class="glow"></span><span class="k">1900 K</span><span class="n" data-i18n="l1n">Candle flame</span><span class="d" data-i18n="l1d">The light of evenings past.</span></div>
-        <div class="light l2" role="listitem"><span class="glow"></span><span class="k">2700 K</span><span class="n" data-i18n="l2n">Classic bulb</span><span class="d" data-i18n="l2d">The living room, the bedside lamp.</span></div>
-        <div class="light l3" role="listitem"><span class="glow"></span><span class="k">3000 K</span><span class="n" data-i18n="l3n">Sunset</span><span class="d" data-i18n="l3d">Nature's evening signal.</span></div>
-        <div class="light l4" role="listitem"><span class="glow"></span><span class="k">5500 K</span><span class="n" data-i18n="l4n">Full daylight</span><span class="d" data-i18n="l4d">The midday sun.</span></div>
-        <div class="light l5" role="listitem"><span class="glow"></span><span class="k">6500 K</span><span class="n" data-i18n="l5n">Computer screen</span><span class="d" data-i18n="l5d">“Full daylight”, even at midnight.</span></div>
-      </div>
-        <div class="k-tint" id="k-tint" aria-hidden="true"></div>
-        <div class="k-orb" id="k-orb" aria-hidden="true"><i></i></div>
-        <div class="k-read" aria-hidden="true"><span class="k-big" id="k-big">6500 K</span><div class="k-slider" id="k-slider"><b></b></div><div class="k-ruler"><span style="left:0.00%">1900</span><span style="left:17.39%">2700</span><span style="left:32.61%">3400</span><span style="left:50.00%">4200</span><span style="left:100.00%">6500</span></div></div>
-      </div>
-    </div>
-    <div class="wrap">
-      <div class="lights-note"><span class="side" data-i18n="lightsLeft">← Evening light</span><span data-i18n="lightsMid"><b>Sereneye brings your screen back to evening light</b> when the sun sets.</span><span class="side" data-i18n="lightsRight">Daylight →</span></div>
-
-      <div class="science">
+      <div class="science" style="margin-top:0">
         <div class="reveal"><b data-i18n="sc1t">Your sleep rhythm</b><p data-i18n="sc1p">Our internal clock is set by light. Warm light in the evening goes along with the natural drop in alertness.</p></div>
         <div class="reveal"><b data-i18n="sc2t">Eye strain</b><p data-i18n="sc2p">Hours in front of a very bright screen tire the eyes. A softer tint and lower brightness make evening reading more comfortable.</p></div>
         <div class="reveal"><b data-i18n="sc3t">The recommendations</b><p data-i18n="sc3p">Sleep specialists advise limiting screen exposure before bed. When you can't avoid it, warming the light is a good habit.</p></div>
@@ -929,8 +951,6 @@
   </section>
 </main>
 
-<div class="warm-pill away" id="warm-pill" title="This page warms up as you scroll" data-i18n-attr="title:pageFilter"><img src="icon.png" alt=""><span id="warm-k">6500 K</span><button type="button" id="warm-switch" aria-pressed="true" aria-label="Turn the page filter on or off" data-i18n-attr="aria-label:pageFilterToggle"></button></div>
-
 <footer>
   <div class="wrap">
     <span>© 2026 Sereneye · Jordan Thomas</span>
@@ -1001,12 +1021,10 @@
     const eyeTrack = $("eye-track"), eyeCover = $("eye-cover"), eyeTagB = $("eye-tag-b");
     const scrubs = [...document.querySelectorAll("[data-scrub]")];
     const heroCopy = document.querySelector(".hero-grid > div"), heroMac = document.querySelector(".mac"), heroBox = document.querySelector(".hero");
-    const pill = $("warm-pill"), warmK = $("warm-k"), warmSwitch = $("warm-switch"), root = document.documentElement;
     const starts = [0, .18, .40, .62, .80], clicks = [.335, .425, .505];
     // Lumière nommée de chaque plage, de la plus froide à la plus chaude
     const kBands = [[6000, 9999], [4250, 6000], [2850, 4250], [2300, 2850], [0, 2300]];
     const hots = [[.74, .045, .22, .1], [.03, .19, .94, .44], [.03, .67, .94, .22]];
-    const bases = { "--cream": [242, 239, 228], "--cream-2": [232, 227, 210], "--paper": [251, 249, 242] };
     const lerp = (a, b, t) => a + (b - a) * t, n3 = v => Math.round(v * 1000) / 1000;
 
     // N'écrit dans la page que si la valeur a vraiment changé
@@ -1020,10 +1038,10 @@
     }
 
     // Mesures de la page : une seule fois, puis seulement quand sa taille change
-    let vh = 0, heroH = 1, docH = 1, deskW = 0, deskH = 0, cmpW = 0, sliderW = 0, cmpT, eyeT, storyT, lightT, menuT, scrubTops = [], route = [];
+    let vh = 0, heroH = 1, deskW = 0, deskH = 0, cmpW = 0, sliderW = 0, cmpT, eyeT, storyT, lightT, menuT, scrubTops = [], route = [];
     function measure() {
       const Y = scrollY, area = el => { const b = el.getBoundingClientRect(); return { top: b.top + Y, span: Math.max(b.height - innerHeight, 1), height: b.height }; };
-      vh = innerHeight; heroH = Math.max(heroBox.offsetHeight, 1); docH = root.scrollHeight;
+      vh = innerHeight; heroH = Math.max(heroBox.offsetHeight, 1);
       deskW = desk.clientWidth; deskH = desk.clientHeight; cmpW = cmp.clientWidth; sliderW = kSlider.clientWidth;
       cmpT = area(cmpTrack); eyeT = area(eyeTrack); storyT = area(track); lightT = area(lTrack); menuT = area(mTrack);
       scrubTops = scrubs.map(el => el.getBoundingClientRect().top + Y);
@@ -1034,7 +1052,7 @@
       lastStory = lastCmp = lastLights = lastMenu = lastEye = -1;
     }
 
-    let lastStory = -1, lastCmp = -1, lastLights = -1, lastMenu = -1, lastEye = -1, stepOn = -1, menuOn = -1, warmKelvin = 0, warmOn = true;
+    let lastStory = -1, lastCmp = -1, lastLights = -1, lastMenu = -1, lastEye = -1, stepOn = -1, menuOn = -1;
     const prog = (area, pos) => Math.round(clamp((pos - area.top) / area.span) * 10000) / 10000;
     function drawStory(p) {
       put(bar, "transform", `scaleX(${p})`);
@@ -1079,19 +1097,6 @@
         put(ping, "transform", `scale(${n3(1.5 - pressed)})`);
       }
     }
-    function warmPage(k) {
-      if (k === warmKelvin) return;
-      warmKelvin = k;
-      const [wr, wg, wb] = rgbForKelvin(k), soft = v => (255 - (255 - v) * .34) / 255;
-      for (const name in bases) {
-        const [r, g, b] = bases[name];
-        if (warmOn) root.style.setProperty(name, `rgb(${Math.round(r * soft(wr))},${Math.round(g * soft(wg))},${Math.round(b * soft(wb))})`);
-        else root.style.removeProperty(name);
-      }
-      warmK.textContent = warmOn ? `${k} K` : "6500 K";
-    }
-    warmSwitch.addEventListener("click", () => { warmOn = !warmOn; warmSwitch.setAttribute("aria-pressed", warmOn); warmKelvin = 0; paint(); });
-
     // Le défilement (trackpad, molette, doigt) est lissé, puis seule la scène à l'écran est redessinée
     let sy = scrollY, running = false, before = 0;
     function paint() {
@@ -1154,11 +1159,6 @@
       }
       // Cartes et fin de page
       scrubs.forEach((el, i) => put(el, "--v", Math.round(clamp((vh * .92 - (scrubTops[i] - pos)) / (vh * .62)) * 100) / 100));
-      // Toute la page se réchauffe, comme l'écran avec l'app
-      const page = clamp(pos / Math.max(docH - vh, 1));
-      warmPage(Math.round(lerp(6500, 3000, smooth(.04, .96, page)) / 100) * 100);
-      const inScene = [cmpT, eyeT, storyT, lightT].some(a => a.top - pos < vh * .25 && a.top + a.height - pos > vh * .75);
-      pill.classList.toggle("away", pos < vh * .55 || inScene || page > .985);
     }
     function frame(now) {
       const target = scrollY, dt = Math.min((now - before) / 1000, .05);
