@@ -85,7 +85,7 @@
   .mac { position: relative; }
   .screen { position: relative; aspect-ratio: 16 / 10.4; border-radius: 18px; background: #0c0c09; padding: 12px; box-shadow: 0 40px 90px -30px rgba(0,0,0,.8), 0 0 0 1px #2b2b22, 0 0 120px -20px rgba(255, 159, 46, .35); }
   .display { position: relative; height: 100%; border-radius: 9px; overflow: hidden;
-    background: linear-gradient(160deg, #cfe3f5 0%, #8db6dd 38%, #f3c79b 70%, #f6a26b 100%); }
+    background: #2a3a9c url("app/wallpaper.jpg") center / cover; }
   .menubar { position: absolute; inset: 0 0 auto; height: 22px; background: rgba(255,255,255,.66); display: flex; align-items: center; gap: 12px; padding: 0 12px; font: 600 10px var(--body); color: #222; }
   .menubar .sp { flex: 1; }
   .menubar svg { width: 15px; height: 13px; }
@@ -269,13 +269,9 @@
   .s-step p { margin: 8px 0 0; color: var(--muted-dark); font-size: 16px; }
   .stage { position: relative; aspect-ratio: 16 / 10; border-radius: 18px; background: #0c0c09; padding: 10px; box-shadow: 0 40px 90px -30px #000, 0 0 0 1px #2b2b22; }
   .stage-glow { position: absolute; inset: 0; border-radius: 18px; box-shadow: 0 0 140px -14px rgba(255, 159, 46, .8); opacity: .2; pointer-events: none; will-change: opacity; }
-  .desk { position: relative; width: 100%; height: 100%; border-radius: 9px; overflow: hidden; background: #4f93ea; isolation: isolate; }
-  .sky-day, .sky-eve, .sky-night { position: absolute; inset: 0; }
-  .sky-day { background: linear-gradient(#4f93ea, #8fc0f5 45%, #d5e8fb 72%); }
-  .sky-eve { background: linear-gradient(#34305c, #a4577a 38%, #f08a4b 62%, #ffc76b 76%); opacity: 0; will-change: opacity; }
-  .sky-night { background: #05060f; opacity: 0; z-index: 1; will-change: opacity; }
-  .desk-sun { position: absolute; left: 66%; top: 12%; will-change: transform; width: 13%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #fff7cf 0 38%, #ffd71a 62%, rgba(255,190,40,0) 72%); box-shadow: 0 0 70px 26px rgba(255, 200, 80, .55); }
-  .ridge { position: absolute; inset: auto 0 0; width: 100%; height: 62%; z-index: 1; }
+  .desk { position: relative; width: 100%; height: 100%; border-radius: 9px; overflow: hidden; background: #2a3a9c url("app/wallpaper.jpg") center / cover; isolation: isolate; }
+  .sky-night { position: absolute; inset: 0; background: #05060f; opacity: 0; z-index: 1; will-change: opacity; }
+  .story:not(.live) .sky-night { opacity: .3; }
   .desk .menubar { z-index: 4; height: 6%; min-height: 20px; color: #fff; background: rgba(10, 14, 30, .4); }
   .sb-icon { width: 21px; height: 19px; transform: scale(0); will-change: transform; }
   .clock { font-variant-numeric: tabular-nums; }
@@ -316,8 +312,6 @@
   .story:not(.live) .desk-tint { background: #ffb46b; }
   .story:not(.live) .sb-icon { transform: none; }
   .story:not(.live) .w-panneau { opacity: 1; }
-  .story:not(.live) .sky-eve { opacity: 1; }
-  .story:not(.live) .desk-sun { top: 64%; }
 
   /* Quelques détails qui s'animent à l'apparition */
   .js .real-panel { transition: opacity .8s ease, transform 1s cubic-bezier(.2,.7,.2,1); }
@@ -362,15 +356,11 @@
   .cmp-head h2 { font-size: clamp(32px, 4.6vw, 58px); line-height: 1.02; font-weight: 800; margin-top: 12px; }
   .cmp-view { position: relative; aspect-ratio: 16 / 7.6; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 80px -30px #000, 0 0 0 1px var(--ink-line); }
   .cmp-scene { position: absolute; inset: 0; overflow: hidden; isolation: isolate; }
-  .cmp-scene .ridge { height: 64%; }
-  .cmp-scene.day { background: linear-gradient(#3f86ec, #7fb4f4 45%, #cfe5fb 76%); }
-  .cmp-scene.eve { background: linear-gradient(#32305e, #a4577a 40%, #f08a4b 62%, #ffc76b 78%); clip-path: inset(0 0 0 50%); }
+  .cmp-scene.day { background: #2a3a9c url("app/wallpaper.jpg") center / cover; }
+  .cmp-scene.eve { background: #2a2610 url("app/wallpaper-2700.jpg") center / cover; clip-path: inset(0 0 0 50%); }
   .cmp-scene.eve .cmp-doc { background: #ffa757; box-shadow: 0 24px 50px -18px rgba(0,0,0,.7); }
   .cmp-scene.eve .cmp-doc i { background: #c98546; }
   .cmp-scene.eve .cmp-doc i:first-child { background: #2c1c0e; }
-  .cmp-scene.eve .ridge path:nth-child(1) { fill: #6f5e47; }
-  .cmp-scene.eve .ridge path:nth-child(2) { fill: #46443d; }
-  .cmp-scene.eve .ridge path:nth-child(3) { fill: #262526; }
   .play .cmp-scene.eve { will-change: clip-path; }
   .cmp-doc { position: absolute; z-index: 2; left: 50%; top: 18%; width: 54%; height: 70%; translate: -50% 0; background: #fff; border-radius: 12px; box-shadow: 0 24px 50px -18px rgba(0,0,0,.55); padding: 2.2% 3%; display: grid; align-content: start; gap: 5.5%; overflow: hidden; }
   .cmp-doc i { display: block; height: 11px; background: #cfcfcf; border-radius: 4px; }
@@ -588,8 +578,8 @@
             <h2 data-i18n="cmpTitle">Same screen. A different evening.</h2>
           </div>
           <div class="cmp-view" id="cmp-view">
-            <div class="cmp-scene day"><svg class="ridge" viewBox="0 0 1600 620" preserveAspectRatio="none"><path fill="#6f8fd0" d="M0 150C120 60 230 40 350 60S560 90 700 150s210 40 300-20 190-120 330-90 170 90 270 100v380H0z"/><path fill="#4668b4" d="M0 300c120-30 240-20 360 20s210 40 330-30 240-60 360 0 200 90 300 60 170-60 250-40v310H0z"/><path fill="#26396f" d="M0 440c100 0 180 60 280 40s170-90 300-80 220 80 340 70 220-70 360-60 200 50 320 30v180H0z"/></svg><div class="cmp-doc"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="cmp-tag a" data-i18n="cmpWithout">Without Sereneye</span></div>
-            <div class="cmp-scene eve"><svg class="ridge" viewBox="0 0 1600 620" preserveAspectRatio="none"><path fill="#6f8fd0" d="M0 150C120 60 230 40 350 60S560 90 700 150s210 40 300-20 190-120 330-90 170 90 270 100v380H0z"/><path fill="#4668b4" d="M0 300c120-30 240-20 360 20s210 40 330-30 240-60 360 0 200 90 300 60 170-60 250-40v310H0z"/><path fill="#26396f" d="M0 440c100 0 180 60 280 40s170-90 300-80 220 80 340 70 220-70 360-60 200 50 320 30v180H0z"/></svg><div class="cmp-doc"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><img class="cmp-panel" data-app-img="panneau" src="app/en/panneau.png" alt="" loading="lazy"><span class="cmp-tag b" data-i18n="cmpWith">With Sereneye</span></div>
+            <div class="cmp-scene day"><div class="cmp-doc"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="cmp-tag a" data-i18n="cmpWithout">Without Sereneye</span></div>
+            <div class="cmp-scene eve"><div class="cmp-doc"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><img class="cmp-panel" data-app-img="panneau" src="app/en/panneau.png" alt="" loading="lazy"><span class="cmp-tag b" data-i18n="cmpWith">With Sereneye</span></div>
             <div class="cmp-line"></div>
           </div>
         </div>
@@ -616,8 +606,8 @@
           <div class="stage" aria-hidden="true">
             <span class="stage-glow" id="stage-glow"></span>
             <div class="desk" id="desk">
-              <div class="sky-day"></div><div class="sky-eve"></div><div class="desk-sun"></div>
-              <svg class="ridge" viewBox="0 0 1600 620" preserveAspectRatio="none"><path fill="#6f8fd0" d="M0 150C120 60 230 40 350 60S560 90 700 150s210 40 300-20 190-120 330-90 170 90 270 100v380H0z"/><path fill="#4668b4" d="M0 300c120-30 240-20 360 20s210 40 330-30 240-60 360 0 200 90 300 60 170-60 250-40v310H0z"/><path fill="#26396f" d="M0 440c100 0 180 60 280 40s170-90 300-80 220 80 340 70 220-70 360-60 200 50 320 30v180H0z"/></svg>
+              
+              
               <div class="doc-win"><div class="bar"><i></i><i></i><i></i></div><div class="doc"><div class="t"></div><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div></div></div>
               <div class="sky-night"></div>
               <div class="menubar"><b></b>Finder<span class="sp"></span>
@@ -910,7 +900,7 @@
     const track = story.querySelector(".story-track"), desk = $("desk"), steps = [...story.querySelectorAll(".s-step")];
     const offre = $("w-offre"), panneau = $("w-panneau"), fenetre = $("w-fenetre"), icon = $("sb-icon");
     const tintEl = $("desk-tint"), chip = $("k-chip"), cursor = $("cursor"), ping = $("ping"), clock = $("clock"), bar = $("story-bar");
-    const skyEve = desk.querySelector(".sky-eve"), skyNight = desk.querySelector(".sky-night"), sun = desk.querySelector(".desk-sun"), stageGlow = $("stage-glow");
+    const skyNight = desk.querySelector(".sky-night"), stageGlow = $("stage-glow");
     const cmp = $("cmp-view"), cmpEve = cmp.querySelector(".eve"), cmpLine = cmp.querySelector(".cmp-line"), cmpTrack = cmp.closest(".cmp-track");
     const lTrack = $("lights-track"), lights = [...lTrack.querySelectorAll(".light")].reverse(), kBig = $("k-big"), kSlider = $("k-slider"), kKnob = kSlider.querySelector("b"), kOrb = $("k-orb"), kCore = kOrb.firstElementChild, kPin = lTrack.querySelector(".lights-pin");
     const mTrack = $("menu-track"), mItems = [...mTrack.querySelectorAll("li")], realPanel = $("real-panel"), hot = $("hot");
@@ -970,11 +960,8 @@
       put(tintEl, "backgroundColor", `rgb(${r},${g},${b})`);
       put(chip, "text", `${k} K`);
       put(chip, "opacity", n3(smooth(.5, .52, p) * (1 - smooth(.62, .66, p))));
-      // Étape 4 : le soleil se couche et l'heure avance
-      const dusk = smooth(.63, .79, p);
-      put(skyEve, "opacity", n3(clamp(dusk * 1.5)));
-      put(sun, "transform", `translateY(${n3(dusk * deskH * .54)}px)`);
-      put(skyNight, "opacity", n3(smooth(.72, .82, p) * .42));
+      // Étape 4 : le soir tombe et l'heure avance
+      put(skyNight, "opacity", n3(smooth(.63, .82, p) * .42));
       put(stageGlow, "opacity", n3(lerp(.2, .75, smooth(.51, .79, p))));
       const min = Math.round(lerp(17 * 60 + 5, 21 * 60 + 42, smooth(.63, .8, p)));
       put(clock, "text", `${String(Math.floor(min / 60)).padStart(2, "0")}:${String(min % 60).padStart(2, "0")}`);
