@@ -396,7 +396,10 @@
   .play .light .k { display: none; }
   .play .light .glow { display: none; }
   .play .lights-pin { color: #1b150f; background: rgb(255, 254, 250); transition: background-color .14s linear; }
-    .play .light .n { font: 800 clamp(26px, 3.6vw, 44px) var(--display); letter-spacing: -.02em; }
+    .k-orb { display: none; }
+  .play .k-orb { display: block; position: absolute; left: 50%; top: 31%; width: 62vmin; height: 62vmin; translate: -50% -50%; border-radius: 50%; pointer-events: none; }
+  .k-orb i { position: absolute; left: 50%; top: 50%; width: 36%; height: 36%; translate: -50% -50%; border-radius: 50%; background: #fff; box-shadow: 0 0 0 1px rgba(90, 50, 10, .05), 0 6px 40px rgba(90, 50, 10, .1); }
+  .play .light .n { font: 800 clamp(26px, 3.6vw, 44px) var(--display); letter-spacing: -.02em; }
   .play .light .d { font-size: 18px; }
   .play .k-read { contain: layout; display: block; position: absolute; left: 0; right: 0; top: 50%; z-index: 3; translate: 0 -50%; text-align: center; pointer-events: none; }
   .k-big { display: block; color: inherit; font: 800 clamp(70px, 14vw, 190px)/1 var(--display); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
@@ -653,6 +656,7 @@
         <div class="light l4" role="listitem"><span class="glow"></span><span class="k">5500 K</span><span class="n" data-i18n="l4n">Full daylight</span><span class="d" data-i18n="l4d">The midday sun.</span></div>
         <div class="light l5" role="listitem"><span class="glow"></span><span class="k">6500 K</span><span class="n" data-i18n="l5n">Computer screen</span><span class="d" data-i18n="l5d">“Full daylight”, even at midnight.</span></div>
       </div>
+        <div class="k-orb" id="k-orb" aria-hidden="true"><i></i></div>
         <div class="k-read" aria-hidden="true"><span class="k-big" id="k-big">6500 K</span><div class="k-slider" id="k-slider"><b></b></div><div class="k-ruler"><span style="left:0.00%">1900</span><span style="left:17.39%">2700</span><span style="left:32.61%">3400</span><span style="left:50.00%">4200</span><span style="left:100.00%">6500</span></div></div>
       </div>
     </div>
@@ -908,7 +912,7 @@
     const tintEl = $("desk-tint"), chip = $("k-chip"), cursor = $("cursor"), ping = $("ping"), clock = $("clock"), bar = $("story-bar");
     const skyEve = desk.querySelector(".sky-eve"), skyNight = desk.querySelector(".sky-night"), sun = desk.querySelector(".desk-sun"), stageGlow = $("stage-glow");
     const cmp = $("cmp-view"), cmpEve = cmp.querySelector(".eve"), cmpLine = cmp.querySelector(".cmp-line"), cmpTrack = cmp.closest(".cmp-track");
-    const lTrack = $("lights-track"), lights = [...lTrack.querySelectorAll(".light")].reverse(), kBig = $("k-big"), kSlider = $("k-slider"), kKnob = kSlider.querySelector("b"), kPin = lTrack.querySelector(".lights-pin");
+    const lTrack = $("lights-track"), lights = [...lTrack.querySelectorAll(".light")].reverse(), kBig = $("k-big"), kSlider = $("k-slider"), kKnob = kSlider.querySelector("b"), kOrb = $("k-orb"), kCore = kOrb.firstElementChild, kPin = lTrack.querySelector(".lights-pin");
     const mTrack = $("menu-track"), mItems = [...mTrack.querySelectorAll("li")], realPanel = $("real-panel"), hot = $("hot");
     const scrubs = [...document.querySelectorAll("[data-scrub]")];
     const heroCopy = document.querySelector(".hero-grid > div"), heroMac = document.querySelector(".mac"), heroBox = document.querySelector(".hero");
@@ -1040,6 +1044,10 @@
         // Le fond est un écran blanc passé par la même formule que l'app, à 100 % de luminosité
         const [sr, sg, sb] = rgbForKelvin(k);
         put(kPin, "backgroundColor", `rgb(${sr},${sg},${sb})`);
+        // Le cercle suit la même teinte, éclaircie pour rester visible sur le fond
+        const glow = v => Math.round(v + (255 - v) * .62), halo = `${glow(sr)},${glow(sg)},${glow(sb)}`;
+        put(kCore, "backgroundColor", `rgb(${halo})`);
+        put(kOrb, "background", `radial-gradient(circle, rgba(${halo},.62) 18%, rgba(${halo},.24) 42%, rgba(${halo},0) 70%)`);
       }
       const pm = prog(menuT, pos);
       if (pm !== lastMenu) {
