@@ -113,7 +113,7 @@
   .control-top span { font-size: 14px; color: var(--muted-dark); }
   .kelvin { font: 700 26px var(--display); font-variant-numeric: tabular-nums; color: var(--cream); }
   input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 99px; margin: 16px 0 14px;
-    background: linear-gradient(90deg, #ff8a1f, #ffc56b 40%, #fff1d6 70%, #dfe7f1); cursor: pointer; }
+    background: linear-gradient(90deg, rgb(255, 132, 0) 0.0%, rgb(255, 151, 50) 8.7%, rgb(255, 167, 87) 17.4%, rgb(255, 180, 117) 26.1%, rgb(255, 190, 135) 32.6%, rgb(255, 201, 157) 41.3%, rgb(255, 211, 175) 50.0%, rgb(255, 220, 191) 58.7%, rgb(255, 228, 206) 67.4%, rgb(255, 237, 222) 78.3%, rgb(255, 246, 237) 89.1%, rgb(255, 254, 250) 100.0%); cursor: pointer; }
   input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--cream); border: 3px solid var(--ink); box-shadow: 0 0 0 1px var(--sun); }
   input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--cream); border: 3px solid var(--ink); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -137,11 +137,11 @@
   .light .n { font-weight: 600; }
   .light .d { font-size: 14px; opacity: .78; }
   .light .glow { width: 34px; height: 34px; border-radius: 50%; margin-bottom: 10px; box-shadow: 0 0 22px 6px currentColor; background: currentColor; }
-  .l1 { background: #3a2210; color: #ffd9a8; } .l1 .glow { color: #ff8a1f; }
-  .l2 { background: #5a3412; color: #ffe7c4; } .l2 .glow { color: #ffad4a; }
-  .l3 { background: #c7652a; color: #2a1608; } .l3 .glow { color: #ffd27a; }
-  .l4 { background: #f3efe2; color: var(--ink); } .l4 .glow { color: #fff6d8; box-shadow: 0 0 22px 6px #ffe9a6; }
-  .l5 { background: #dfe8f3; color: #152033; } .l5 .glow { color: #bcd6ff; box-shadow: 0 0 22px 6px #8fb6f5; }
+  .l1 { background: rgb(255, 132, 0); color: #1b150f; } .l1 .glow { color: #ff8a1f; }
+  .l2 { background: rgb(255, 167, 87); color: #1b150f; } .l2 .glow { color: #ffad4a; }
+  .l3 { background: rgb(255, 177, 110); color: #1b150f; } .l3 .glow { color: #ffd27a; }
+  .l4 { background: rgb(255, 237, 222); color: var(--ink); } .l4 .glow { color: #fff6d8; box-shadow: 0 0 22px 6px #ffe9a6; }
+  .l5 { background: rgb(255, 254, 250); color: var(--ink); } .l5 .glow { color: #bcd6ff; box-shadow: 0 0 22px 6px #8fb6f5; }
   .lights-note { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 14px; font-size: 14px; color: var(--muted-light); }
   .lights-note b { color: var(--ember); }
   .science { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 48px 0 0; }
@@ -180,7 +180,7 @@
   .c-temp p { color: var(--muted-dark); max-width: 26em; }
   .c-temp .ico { background: var(--sun); }
   .c-temp .scale { position: absolute; left: 30px; right: 30px; bottom: 30px; }
-  .c-temp .scale .grad { height: 54px; border-radius: 14px; background: linear-gradient(90deg, #ff7a12 0%, #ffa94a 25%, #ffd59a 50%, #fff0dc 75%, #e3ebf5 100%); }
+  .c-temp .scale .grad { height: 54px; border-radius: 14px; background: linear-gradient(90deg, rgb(255, 132, 0) 0.0%, rgb(255, 151, 50) 8.7%, rgb(255, 167, 87) 17.4%, rgb(255, 180, 117) 26.1%, rgb(255, 190, 135) 32.6%, rgb(255, 201, 157) 41.3%, rgb(255, 211, 175) 50.0%, rgb(255, 220, 191) 58.7%, rgb(255, 228, 206) 67.4%, rgb(255, 237, 222) 78.3%, rgb(255, 246, 237) 89.1%, rgb(255, 254, 250) 100.0%); }
   .c-temp .scale .ticks { display: flex; justify-content: space-between; margin-top: 10px; font: 500 12px var(--body); color: var(--muted-dark); font-variant-numeric: tabular-nums; }
   .c-sun { grid-column: span 5; background: linear-gradient(170deg, #ffcf6b, #ff8f3a 70%, #e8642a); border: 0; color: var(--ink); }
   .c-sun p { color: rgba(20,20,14,.75); }
@@ -273,7 +273,7 @@
   .sky-day, .sky-eve, .sky-night { position: absolute; inset: 0; }
   .sky-day { background: linear-gradient(#4f93ea, #8fc0f5 45%, #d5e8fb 72%); }
   .sky-eve { background: linear-gradient(#34305c, #a4577a 38%, #f08a4b 62%, #ffc76b 76%); opacity: 0; will-change: opacity; }
-  .sky-night { background: #05060f; opacity: 0; z-index: 3; will-change: opacity; }
+  .sky-night { background: #05060f; opacity: 0; z-index: 1; will-change: opacity; }
   .desk-sun { position: absolute; left: 66%; top: 12%; will-change: transform; width: 13%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #fff7cf 0 38%, #ffd71a 62%, rgba(255,190,40,0) 72%); box-shadow: 0 0 70px 26px rgba(255, 200, 80, .55); }
   .ridge { position: absolute; inset: auto 0 0; width: 100%; height: 62%; z-index: 1; }
   .desk .menubar { z-index: 4; height: 6%; min-height: 20px; color: #fff; background: rgba(10, 14, 30, .4); }
@@ -395,14 +395,12 @@
   .play .light { background: none; color: inherit; position: absolute; inset: 0; min-height: 0; opacity: 0; will-change: opacity; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding: 0 24px 11vh; gap: 4px; }
   .play .light .k { display: none; }
   .play .light .glow { display: none; }
-  .play .lights-pin { color: #152033; background: #dfe8f3; transition: color .25s; }
-  .k-orb { display: none; }
-  .play .k-orb { display: block; position: absolute; left: 50%; top: 31%; width: 62vmin; height: 62vmin; translate: -50% -50%; border-radius: 50%; pointer-events: none; }
-  .play .light .n { font: 800 clamp(26px, 3.6vw, 44px) var(--display); letter-spacing: -.02em; }
+  .play .lights-pin { color: #1b150f; background: rgb(255, 254, 250); transition: background-color .14s linear; }
+    .play .light .n { font: 800 clamp(26px, 3.6vw, 44px) var(--display); letter-spacing: -.02em; }
   .play .light .d { font-size: 18px; }
   .play .k-read { contain: layout; display: block; position: absolute; left: 0; right: 0; top: 50%; z-index: 3; translate: 0 -50%; text-align: center; pointer-events: none; }
   .k-big { display: block; color: inherit; font: 800 clamp(70px, 14vw, 190px)/1 var(--display); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
-  .k-slider { position: relative; width: min(820px, 86vw); height: 9px; margin: 26px auto 0; border-radius: 99px; background: linear-gradient(90deg, #ff8a1f, #ffc56b 32%, #ffe6c2 52%, #fff4e6 72%, #dfe7f1); box-shadow: 0 0 0 1px rgba(0,0,0,.14); }
+  .k-slider { position: relative; width: min(820px, 86vw); height: 9px; margin: 26px auto 0; border-radius: 99px; background: linear-gradient(90deg, rgb(255, 132, 0) 0.0%, rgb(255, 151, 50) 8.7%, rgb(255, 167, 87) 17.4%, rgb(255, 180, 117) 26.1%, rgb(255, 190, 135) 32.6%, rgb(255, 201, 157) 41.3%, rgb(255, 211, 175) 50.0%, rgb(255, 220, 191) 58.7%, rgb(255, 228, 206) 67.4%, rgb(255, 237, 222) 78.3%, rgb(255, 246, 237) 89.1%, rgb(255, 254, 250) 100.0%); box-shadow: 0 0 0 1px rgba(0,0,0,.28); }
   .k-slider b { position: absolute; top: 50%; left: 0; will-change: transform; width: 30px; height: 30px; translate: -50% -50%; border-radius: 50%; background: #fff; box-shadow: 0 3px 12px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.08); }
   /* Règle : un trait par centaine de kelvins (46 intervalles de 1900 à 6500 K), un trait plus long par préréglage */
   .k-ruler { position: relative; height: 34px; margin-top: 10px; font: 600 12px var(--body); font-variant-numeric: tabular-nums; }
@@ -655,7 +653,6 @@
         <div class="light l4" role="listitem"><span class="glow"></span><span class="k">5500 K</span><span class="n" data-i18n="l4n">Full daylight</span><span class="d" data-i18n="l4d">The midday sun.</span></div>
         <div class="light l5" role="listitem"><span class="glow"></span><span class="k">6500 K</span><span class="n" data-i18n="l5n">Computer screen</span><span class="d" data-i18n="l5d">“Full daylight”, even at midnight.</span></div>
       </div>
-        <div class="k-orb" id="k-orb" aria-hidden="true"></div>
         <div class="k-read" aria-hidden="true"><span class="k-big" id="k-big">6500 K</span><div class="k-slider" id="k-slider"><b></b></div><div class="k-ruler"><span style="left:0.00%">1900</span><span style="left:17.39%">2700</span><span style="left:32.61%">3400</span><span style="left:50.00%">4200</span><span style="left:100.00%">6500</span></div></div>
       </div>
     </div>
@@ -861,8 +858,8 @@
   // Température de couleur -> couleur de la teinte (même calcul que dans l'app)
   function rgbForKelvin(k) {
     const t = k / 100; let r, g, b;
-    if (t <= 66) { r = 255; g = 99.47 * Math.log(t) - 161.12; b = t <= 19 ? 0 : 138.52 * Math.log(t - 10) - 305.04; }
-    else { r = 329.7 * Math.pow(t - 60, -0.1332); g = 288.12 * Math.pow(t - 60, -0.0755); b = 255; }
+    if (t <= 66) { r = 255; g = 99.4708025861 * Math.log(t) - 161.1195681661; b = t <= 19 ? 0 : 138.5177312231 * Math.log(t - 10) - 305.0447927307; }
+    else { r = 329.698727446 * Math.pow(t - 60, -0.1332047592); g = 288.1221695283 * Math.pow(t - 60, -0.0755148492); b = 255; }
     const c = v => Math.round(Math.min(Math.max(v, 0), 255));
     return [c(r), c(g), c(b)];
   }
@@ -911,14 +908,13 @@
     const tintEl = $("desk-tint"), chip = $("k-chip"), cursor = $("cursor"), ping = $("ping"), clock = $("clock"), bar = $("story-bar");
     const skyEve = desk.querySelector(".sky-eve"), skyNight = desk.querySelector(".sky-night"), sun = desk.querySelector(".desk-sun"), stageGlow = $("stage-glow");
     const cmp = $("cmp-view"), cmpEve = cmp.querySelector(".eve"), cmpLine = cmp.querySelector(".cmp-line"), cmpTrack = cmp.closest(".cmp-track");
-    const lTrack = $("lights-track"), lights = [...lTrack.querySelectorAll(".light")].reverse(), kBig = $("k-big"), kSlider = $("k-slider"), kKnob = kSlider.querySelector("b"), kOrb = $("k-orb"), kPin = lTrack.querySelector(".lights-pin");
+    const lTrack = $("lights-track"), lights = [...lTrack.querySelectorAll(".light")].reverse(), kBig = $("k-big"), kSlider = $("k-slider"), kKnob = kSlider.querySelector("b"), kPin = lTrack.querySelector(".lights-pin");
     const mTrack = $("menu-track"), mItems = [...mTrack.querySelectorAll("li")], realPanel = $("real-panel"), hot = $("hot");
     const scrubs = [...document.querySelectorAll("[data-scrub]")];
     const heroCopy = document.querySelector(".hero-grid > div"), heroMac = document.querySelector(".mac"), heroBox = document.querySelector(".hero");
     const pill = $("warm-pill"), warmK = $("warm-k"), warmSwitch = $("warm-switch"), root = document.documentElement;
     const starts = [0, .18, .40, .62, .80], clicks = [.335, .425, .505];
-    // Couleurs de la scène pour chaque température, et lumière nommée de chaque plage (de la plus froide à la plus chaude)
-    const kColors = [[6500, 223, 232, 243], [5500, 243, 239, 226], [4500, 245, 222, 178], [3600, 232, 160, 90], [3000, 199, 101, 42], [2700, 120, 68, 28], [2300, 80, 46, 20], [1900, 46, 27, 13]];
+    // Lumière nommée de chaque plage, de la plus froide à la plus chaude
     const kBands = [[6000, 9999], [4250, 6000], [2850, 4250], [2300, 2850], [0, 2300]];
     const hots = [[.74, .045, .22, .1], [.03, .19, .94, .44], [.03, .67, .94, .22]];
     const bases = { "--cream": [242, 239, 228], "--cream-2": [232, 227, 210], "--paper": [251, 249, 242] };
@@ -949,7 +945,7 @@
       lastStory = lastCmp = lastLights = lastMenu = -1;
     }
 
-    let lastStory = -1, lastCmp = -1, lastLights = -1, lastMenu = -1, stepOn = -1, menuOn = -1, warmKelvin = 0, warmOn = true, kStep = 0;
+    let lastStory = -1, lastCmp = -1, lastLights = -1, lastMenu = -1, stepOn = -1, menuOn = -1, warmKelvin = 0, warmOn = true;
     const prog = (area, pos) => Math.round(clamp((pos - area.top) / area.span) * 10000) / 10000;
     function drawStory(p) {
       put(bar, "transform", `scaleX(${p})`);
@@ -1041,20 +1037,9 @@
           put(el, "opacity", o);
           put(el, "visibility", o > 0 ? "visible" : "hidden");
         });
-        // La couleur de la pièce et celle du soleil suivent la température, par pas de 20 K
-        const step = Math.round(exact / 20) * 20;
-        if (step !== kStep) {
-          kStep = step;
-          let c = kColors[kColors.length - 1];
-          for (let i = 0; i < kColors.length - 1; i++) if (step >= kColors[i + 1][0]) {
-            const [ka, ...a] = kColors[i], [kb, ...b] = kColors[i + 1], t = (ka - step) / (ka - kb);
-            c = [0, ...a.map((v, j) => lerp(v, b[j], t))]; break;
-          }
-          const [, bgR, bgG, bgB] = c, [sr, sg, sb] = rgbForKelvin(step);
-          put(kPin, "backgroundColor", `rgb(${Math.round(bgR)},${Math.round(bgG)},${Math.round(bgB)})`);
-          put(kPin, "color", .2126 * bgR + .7152 * bgG + .0722 * bgB > 118 ? "#1b150f" : "#fbeedc");
-          put(kOrb, "background", `radial-gradient(circle, rgb(${sr},${sg},${sb}) 0 24%, rgba(${sr},${sg},${sb},.42) 34%, rgba(${sr},${sg},${sb},.12) 52%, rgba(${sr},${sg},${sb},0) 70%)`);
-        }
+        // Le fond est un écran blanc passé par la même formule que l'app, à 100 % de luminosité
+        const [sr, sg, sb] = rgbForKelvin(k);
+        put(kPin, "backgroundColor", `rgb(${sr},${sg},${sb})`);
       }
       const pm = prog(menuT, pos);
       if (pm !== lastMenu) {
