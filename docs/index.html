@@ -466,6 +466,49 @@
     .demo { height: 82px; }
   }
 
+  /* ---------- Santé des yeux : un œil sans le filtre, le même avec, au défilement ---------- */
+  .eyes { background: var(--ink); color: var(--cream); }
+  .eye-pin { padding-top: 90px; }
+  .eye-pin > .wrap { width: 100%; }
+  .eye-head .eyebrow { color: var(--sun); }
+  .eye-head h2 { font-size: clamp(32px, 4.6vw, 58px); line-height: 1.02; font-weight: 800; margin-top: 12px; }
+  .eye-head p { color: var(--muted-dark); font-size: 18px; max-width: 42em; margin: 12px 0 22px; }
+  .eye-stage { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .eye-fig { position: relative; margin: 0; border-radius: 22px; overflow: hidden; background: #14140e; }
+  .eye-fig img { width: 100%; height: auto; }
+  .eye-fig figcaption { position: absolute; left: 3%; top: 5%; padding: 8px 16px; border-radius: 99px; background: rgba(20, 20, 14, .78); color: var(--cream); font: 700 clamp(13px, 1.6vw, 18px) var(--display); }
+  .eye-fig.with figcaption { background: var(--sun); color: var(--ink); }
+  .eye-note { margin: 12px 0 0; font-size: 13px; color: var(--muted-dark); }
+  .eye-more { padding: 66px 0 110px; }
+  .eye-more h3 { font-size: clamp(25px, 3vw, 36px); font-weight: 800; }
+  .csq { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px; }
+  .csq div { border: 1px solid var(--ink-line); border-radius: 18px; padding: 22px; }
+  .csq b { display: block; font: 700 18px var(--display); margin-bottom: 8px; }
+  .csq p { margin: 0; color: var(--muted-dark); font-size: 15px; }
+  .csq-note { margin: 16px 0 0; color: var(--muted-dark); font-size: 14px; max-width: 58em; }
+  .csq-note a { color: var(--cream); }
+  .eye-does { display: grid; grid-template-columns: 1.2fr 1fr; gap: 14px; margin-top: 44px; }
+  .eye-does > div { border-radius: 22px; padding: 30px; }
+  .eye-does .gain { background: linear-gradient(150deg, #ffd27a, #ff9f4f); color: var(--ink); }
+  .eye-does .keep { background: var(--ink-2); border: 1px solid var(--ink-line); }
+  .eye-does ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; }
+  .eye-does li { padding-left: 24px; position: relative; font-size: 16px; }
+  .eye-does li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+  .play .eye-track { height: 240vh; }
+  .play .eye-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; align-items: center; padding-top: 0; overflow: hidden; }
+  .play .eye-stage { display: block; position: relative; width: min(100%, calc((100svh - 300px) * 1500 / 860)); aspect-ratio: 1500 / 860; margin-inline: auto; }
+  .play .eye-fig { position: absolute; inset: 0; }
+  .play .eye-fig.with { opacity: 0; will-change: opacity; }
+  .play .eye-note { text-align: center; }
+  @media (max-width: 960px) {
+    .csq { grid-template-columns: 1fr 1fr; }
+    .eye-does { grid-template-columns: 1fr; }
+    .eye-stage { grid-template-columns: 1fr; }
+    .eye-head p { font-size: 16px; }
+    .play .eye-stage { width: 100%; }
+  }
+  @media (max-width: 560px) { .csq { grid-template-columns: 1fr; } .eye-more { padding: 48px 0 80px; } }
+
   /* ---------- Téléphone et tablette ---------- */
   @media (max-width: 960px) {
     .hero { padding: 120px 0 80px; }
@@ -634,6 +677,46 @@
   </section>
 
   <!-- Santé et sommeil -->
+  <!-- Santé des yeux : un œil sans le filtre, le même avec, puis ce qu'il faut savoir -->
+  <section class="eyes" id="yeux">
+    <div class="eye-track" id="eye-track">
+      <div class="eye-pin">
+        <div class="wrap">
+          <div class="eye-head">
+            <span class="eyebrow" data-i18n="eyeEyebrow">Eye health</span>
+            <h2 data-i18n="eyeTitle">Your eyes, after hours on a screen.</h2>
+            <p data-i18n="eyeLede">In the evening, your screen stays as bright and blue as in broad daylight. Keep scrolling to see the difference.</p>
+          </div>
+          <div class="eye-stage">
+            <figure class="eye-fig"><img src="app/oeil-sans.jpg" width="1500" height="860" loading="lazy" alt="Illustrated eye, slightly reddened, reflecting a blue screen" data-i18n-attr="alt:eyeAltSans"><figcaption data-i18n="cmpWithout">Without Sereneye</figcaption></figure>
+            <figure class="eye-fig with" id="eye-with"><img src="app/oeil-avec.jpg" width="1500" height="860" loading="lazy" alt="Illustrated eye, clear, reflecting a warm screen" data-i18n-attr="alt:eyeAltAvec"><figcaption data-i18n="cmpWith">With Sereneye</figcaption></figure>
+          </div>
+          <p class="eye-note" data-i18n="eyeNote">Artistic illustration: not a photo or a clinical result.</p>
+        </div>
+      </div>
+    </div>
+    <div class="wrap eye-more">
+      <h3 class="reveal" data-i18n="csqTitle">What long screen sessions can cause</h3>
+      <div class="csq">
+        <div class="reveal"><b data-i18n="c1t">Dry, irritated eyes</b><p data-i18n="c1p">We blink less in front of a screen, so the eyes can dry out.</p></div>
+        <div class="reveal"><b data-i18n="c2t">Eye strain</b><p data-i18n="c2p">Tired eyes and sometimes blurred vision, after hours focused at the same distance.</p></div>
+        <div class="reveal"><b data-i18n="c3t">Headaches and neck pain</b><p data-i18n="c3p">Often made worse by glare, a poor posture and too few breaks.</p></div>
+        <div class="reveal"><b data-i18n="c4t">Harder evenings</b><p data-i18n="c4p">Bright, blue-rich light late in the evening can keep you more alert and delay melatonin.</p></div>
+      </div>
+      <p class="csq-note reveal" data-i18n="csqNote">These symptoms are generally temporary. According to the <a href="https://www.aao.org/eye-health/tips-prevention/should-you-be-worried-about-blue-light" target="_blank" rel="noopener">American Academy of Ophthalmology</a>, there is no evidence that blue light from screens damages the eyes.</p>
+      <div class="eye-does">
+        <div class="gain reveal">
+          <h3 data-i18n="brTitle">What Sereneye changes</h3>
+          <ul><li data-i18n="b1">A warmer screen in the evening, with less of the blue light linked to evening alertness.</li><li data-i18n="b2">Brightness below the Mac's minimum, for less glare in a dark room.</li><li data-i18n="b3">All of it automatic at sunset, so you don't have to think about it.</li></ul>
+        </div>
+        <div class="keep reveal">
+          <h3 data-i18n="limTitle">What it doesn't replace</h3>
+          <ul><li data-i18n="l1">Every 20 minutes, look about 6 metres away for 20 seconds.</li><li data-i18n="l2">Blink often and adjust your screen and your lighting.</li><li data-i18n="l3">If discomfort persists, see an eye care professional.</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="block health" id="sante">
     <div class="wrap">
       <div class="head reveal">
@@ -911,6 +994,7 @@
     const cmp = $("cmp-view"), cmpEve = cmp.querySelector(".eve"), cmpLine = cmp.querySelector(".cmp-line"), cmpTrack = cmp.closest(".cmp-track");
     const lTrack = $("lights-track"), lights = [...lTrack.querySelectorAll(".light")].reverse(), kBig = $("k-big"), kSlider = $("k-slider"), kKnob = kSlider.querySelector("b"), kOrb = $("k-orb"), kCore = kOrb.firstElementChild, kTint = $("k-tint");
     const mTrack = $("menu-track"), mItems = [...mTrack.querySelectorAll("li")], realPanel = $("real-panel"), hot = $("hot");
+    const eyeTrack = $("eye-track"), eyeWith = $("eye-with");
     const scrubs = [...document.querySelectorAll("[data-scrub]")];
     const heroCopy = document.querySelector(".hero-grid > div"), heroMac = document.querySelector(".mac"), heroBox = document.querySelector(".hero");
     const pill = $("warm-pill"), warmK = $("warm-k"), warmSwitch = $("warm-switch"), root = document.documentElement;
@@ -932,21 +1016,21 @@
     }
 
     // Mesures de la page : une seule fois, puis seulement quand sa taille change
-    let vh = 0, heroH = 1, docH = 1, deskW = 0, deskH = 0, cmpW = 0, sliderW = 0, cmpT, storyT, lightT, menuT, scrubTops = [], route = [];
+    let vh = 0, heroH = 1, docH = 1, deskW = 0, deskH = 0, cmpW = 0, sliderW = 0, cmpT, eyeT, storyT, lightT, menuT, scrubTops = [], route = [];
     function measure() {
       const Y = scrollY, area = el => { const b = el.getBoundingClientRect(); return { top: b.top + Y, span: Math.max(b.height - innerHeight, 1), height: b.height }; };
       vh = innerHeight; heroH = Math.max(heroBox.offsetHeight, 1); docH = root.scrollHeight;
       deskW = desk.clientWidth; deskH = desk.clientHeight; cmpW = cmp.clientWidth; sliderW = kSlider.clientWidth;
-      cmpT = area(cmpTrack); storyT = area(track); lightT = area(lTrack); menuT = area(mTrack);
+      cmpT = area(cmpTrack); eyeT = area(eyeTrack); storyT = area(track); lightT = area(lTrack); menuT = area(mTrack);
       scrubTops = scrubs.map(el => el.getBoundingClientRect().top + Y);
       const d = desk.getBoundingClientRect();
       const spot = (el, fx, fy) => { const kept = el.style.transform; el.style.transform = "none"; const b = el.getBoundingClientRect(); el.style.transform = kept; return [b.left - d.left + b.width * fx, b.top - d.top + b.height * fy]; };
       const ic = spot(icon, .5, .5), tryBtn = spot(offre, .5, .728), preset = spot(panneau, .29, .403);
       route = [[0, [deskW * .34, deskH * .78]], [.1, ic], [.2, ic], [.32, tryBtn], [.36, tryBtn], [.415, ic], [.44, ic], [.495, preset], [.6, preset], [.65, [deskW * .3, deskH * .8]]];
-      lastStory = lastCmp = lastLights = lastMenu = -1;
+      lastStory = lastCmp = lastLights = lastMenu = lastEye = -1;
     }
 
-    let lastStory = -1, lastCmp = -1, lastLights = -1, lastMenu = -1, stepOn = -1, menuOn = -1, warmKelvin = 0, warmOn = true;
+    let lastStory = -1, lastCmp = -1, lastLights = -1, lastMenu = -1, lastEye = -1, stepOn = -1, menuOn = -1, warmKelvin = 0, warmOn = true;
     const prog = (area, pos) => Math.round(clamp((pos - area.top) / area.span) * 10000) / 10000;
     function drawStory(p) {
       put(bar, "transform", `scaleX(${p})`);
@@ -1023,6 +1107,9 @@
       }
       const ps = prog(storyT, pos);
       if (ps !== lastStory) { lastStory = ps; drawStory(ps); }
+      // L'œil sous l'écran bleu laisse place au même œil sous l'écran filtré
+      const pe = prog(eyeT, pos);
+      if (pe !== lastEye) { lastEye = pe; put(eyeWith, "opacity", n3(smooth(.22, .78, pe))); }
       const pl = prog(lightT, pos);
       if (pl !== lastLights) {
         lastLights = pl;
@@ -1061,7 +1148,7 @@
       // Toute la page se réchauffe, comme l'écran avec l'app
       const page = clamp(pos / Math.max(docH - vh, 1));
       warmPage(Math.round(lerp(6500, 3000, smooth(.04, .96, page)) / 100) * 100);
-      const inScene = [cmpT, storyT, lightT].some(a => a.top - pos < vh * .25 && a.top + a.height - pos > vh * .75);
+      const inScene = [cmpT, eyeT, storyT, lightT].some(a => a.top - pos < vh * .25 && a.top + a.height - pos > vh * .75);
       pill.classList.toggle("away", pos < vh * .55 || inScene || page > .985);
     }
     function frame(now) {
