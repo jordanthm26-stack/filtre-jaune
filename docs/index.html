@@ -385,14 +385,18 @@
   .play .light { background: none; color: inherit; position: absolute; inset: 0; min-height: 0; opacity: 0; will-change: opacity; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding: 0 24px 11vh; gap: 4px; }
   .play .light .k { display: none; }
   .play .light .glow { display: none; }
-  .play .lights-pin { color: #1b150f; background: rgb(255, 254, 250); transition: background-color .14s linear; }
+  .play .lights-pin { color: #fbf4e6; background: #6b5a4a url("app/fond-scene.jpg") center / cover; isolation: isolate; }
+  .k-tint { display: none; }
+  .play .k-tint { display: block; position: absolute; inset: 0; z-index: 0; background: rgb(255, 254, 250); mix-blend-mode: multiply; transition: background-color .14s linear; pointer-events: none; }
+  .play .lights { z-index: 2; }
+  .play .light .n, .play .light .d { text-shadow: 0 2px 16px rgba(0, 0, 0, .85), 0 0 3px rgba(0, 0, 0, .6); }
     .k-orb { display: none; }
-  .play .k-orb { display: block; position: absolute; left: 50%; top: 31%; width: 62vmin; height: 62vmin; translate: -50% -50%; border-radius: 50%; pointer-events: none; }
+  .play .k-orb { display: block; z-index: 1; position: absolute; left: 50%; top: 24%; width: 34vmin; height: 34vmin; translate: -50% -50%; border-radius: 50%; pointer-events: none; }
   .k-orb i { position: absolute; left: 50%; top: 50%; width: 36%; height: 36%; translate: -50% -50%; border-radius: 50%; background: #fff; box-shadow: 0 0 0 1px rgba(90, 50, 10, .05), 0 6px 40px rgba(90, 50, 10, .1); }
   .play .light .n { font: 800 clamp(26px, 3.6vw, 44px) var(--display); letter-spacing: -.02em; }
   .play .light .d { font-size: 18px; }
-  .play .k-read { contain: layout; display: block; position: absolute; left: 0; right: 0; top: 50%; z-index: 3; translate: 0 -50%; text-align: center; pointer-events: none; }
-  .k-big { display: block; color: inherit; font: 800 clamp(70px, 14vw, 190px)/1 var(--display); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+  .play .k-read { contain: layout; display: block; position: absolute; left: 50%; top: 52%; z-index: 3; width: min(900px, 92vw); padding: 18px 28px 12px; translate: -50% -50%; text-align: center; pointer-events: none; border-radius: 26px; background: rgba(22, 18, 13, .62); box-shadow: 0 24px 60px -24px rgba(0, 0, 0, .7), inset 0 0 0 1px rgba(255, 255, 255, .08); }
+  .k-big { display: block; color: inherit; font: 800 clamp(64px, 11vw, 150px)/1 var(--display); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
   .k-slider { position: relative; width: min(820px, 86vw); height: 9px; margin: 26px auto 0; border-radius: 99px; background: linear-gradient(90deg, rgb(255, 132, 0) 0.0%, rgb(255, 151, 50) 8.7%, rgb(255, 167, 87) 17.4%, rgb(255, 180, 117) 26.1%, rgb(255, 190, 135) 32.6%, rgb(255, 201, 157) 41.3%, rgb(255, 211, 175) 50.0%, rgb(255, 220, 191) 58.7%, rgb(255, 228, 206) 67.4%, rgb(255, 237, 222) 78.3%, rgb(255, 246, 237) 89.1%, rgb(255, 254, 250) 100.0%); box-shadow: 0 0 0 1px rgba(0,0,0,.28); }
   .k-slider b { position: absolute; top: 50%; left: 0; will-change: transform; width: 30px; height: 30px; translate: -50% -50%; border-radius: 50%; background: #fff; box-shadow: 0 3px 12px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.08); }
   /* Règle : un trait par centaine de kelvins (46 intervalles de 1900 à 6500 K), un trait plus long par préréglage */
@@ -400,6 +404,7 @@
   .k-ruler::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 7px; opacity: .55; background: repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px calc(100% / 46)); box-shadow: 1px 0 0 0 transparent; }
   .k-ruler span { position: absolute; top: 0; translate: -50% 0; padding-top: 14px; opacity: .75; }
   .k-ruler span::before { content: ""; position: absolute; left: 50%; top: 0; width: 2px; height: 11px; margin-left: -1px; background: currentColor; }
+  .k-slider, .k-read .k-ruler { max-width: 100%; }
   .k-read .k-ruler { width: min(820px, 86vw); margin-inline: auto; }
   .control .k-ruler { margin: -8px 11px 12px; color: var(--muted-dark); }
 
@@ -455,7 +460,8 @@
     .play .menubar-grid li.on { display: grid; }
     .play .panel-wrap { width: min(285px, 76vw, 38svh); margin: 0 auto; }
     .play .panel-bar { height: 26px; margin-bottom: 8px; }
-    .play .light { padding-bottom: 13vh; }
+    .play .light { padding-bottom: 10vh; }
+    .play .k-read { padding: 14px 14px 8px; }
     .play .light .d { font-size: 16px; }
     .demo { height: 82px; }
   }
@@ -646,6 +652,7 @@
         <div class="light l4" role="listitem"><span class="glow"></span><span class="k">5500 K</span><span class="n" data-i18n="l4n">Full daylight</span><span class="d" data-i18n="l4d">The midday sun.</span></div>
         <div class="light l5" role="listitem"><span class="glow"></span><span class="k">6500 K</span><span class="n" data-i18n="l5n">Computer screen</span><span class="d" data-i18n="l5d">“Full daylight”, even at midnight.</span></div>
       </div>
+        <div class="k-tint" id="k-tint" aria-hidden="true"></div>
         <div class="k-orb" id="k-orb" aria-hidden="true"><i></i></div>
         <div class="k-read" aria-hidden="true"><span class="k-big" id="k-big">6500 K</span><div class="k-slider" id="k-slider"><b></b></div><div class="k-ruler"><span style="left:0.00%">1900</span><span style="left:17.39%">2700</span><span style="left:32.61%">3400</span><span style="left:50.00%">4200</span><span style="left:100.00%">6500</span></div></div>
       </div>
@@ -902,7 +909,7 @@
     const tintEl = $("desk-tint"), chip = $("k-chip"), cursor = $("cursor"), ping = $("ping"), clock = $("clock"), bar = $("story-bar");
     const skyNight = desk.querySelector(".sky-night"), stageGlow = $("stage-glow");
     const cmp = $("cmp-view"), cmpEve = cmp.querySelector(".eve"), cmpLine = cmp.querySelector(".cmp-line"), cmpTrack = cmp.closest(".cmp-track");
-    const lTrack = $("lights-track"), lights = [...lTrack.querySelectorAll(".light")].reverse(), kBig = $("k-big"), kSlider = $("k-slider"), kKnob = kSlider.querySelector("b"), kOrb = $("k-orb"), kCore = kOrb.firstElementChild, kPin = lTrack.querySelector(".lights-pin");
+    const lTrack = $("lights-track"), lights = [...lTrack.querySelectorAll(".light")].reverse(), kBig = $("k-big"), kSlider = $("k-slider"), kKnob = kSlider.querySelector("b"), kOrb = $("k-orb"), kCore = kOrb.firstElementChild, kTint = $("k-tint");
     const mTrack = $("menu-track"), mItems = [...mTrack.querySelectorAll("li")], realPanel = $("real-panel"), hot = $("hot");
     const scrubs = [...document.querySelectorAll("[data-scrub]")];
     const heroCopy = document.querySelector(".hero-grid > div"), heroMac = document.querySelector(".mac"), heroBox = document.querySelector(".hero");
@@ -1028,9 +1035,9 @@
           put(el, "opacity", o);
           put(el, "visibility", o > 0 ? "visible" : "hidden");
         });
-        // Le fond est un écran blanc passé par la même formule que l'app, à 100 % de luminosité
+        // Le fond d'écran est teinté par la même formule que l'app, à 100 % de luminosité
         const [sr, sg, sb] = rgbForKelvin(k);
-        put(kPin, "backgroundColor", `rgb(${sr},${sg},${sb})`);
+        put(kTint, "backgroundColor", `rgb(${sr},${sg},${sb})`);
         // Le cercle suit la même teinte, éclaircie pour rester visible sur le fond
         const glow = v => Math.round(v + (255 - v) * .62), halo = `${glow(sr)},${glow(sg)},${glow(sb)}`;
         put(kCore, "backgroundColor", `rgb(${halo})`);
