@@ -1,6 +1,8 @@
 // 简体中文
 SERENEYE_SITE["zh-Hans"] = {
   home: {
+    cmpEyebrow: "前后对比", cmpTitle: "同一块屏幕，不一样的夜晚。", cmpWithout: "不用 Sereneye", cmpWith: "使用 Sereneye", pageFilter: "滚动时，此页面会逐渐变暖", pageFilterToggle: "开启或关闭页面滤镜",
+    storyEyebrow: "使用流程", storyTitle: "从首次启动，到第一个柔和的夜晚。", step1t: "登录即可开始", step1p: "只需创建一次账户。之后 Sereneye 会安静地待在菜单栏，不打扰你。", step2t: "开始 7 天免费试用", step2p: "解锁全部功能，无需信用卡。喜欢的话，一次性 2.99 欧元即可永久保留。", step3t: "选择你喜欢的暖度", step3p: "点击图标，选择预设或拖动滑块，整个屏幕随即改变。", step4t: "日落时自动接管", step4p: "太阳下山时，色调会自动缓缓升起，并在日出时消退。", step5t: "其他一切，都在一个窗口里", step5p: "照片应用暂停、键盘快捷键、时间安排：设置一次，之后就不用再管了。",
     title: "Sereneye — 夜晚的光，温柔呵护双眼",
     navLabel: "主导航", langLabel: "语言", lightsLabel: "不同光源的色温",
     panelLabel: "Sereneye 面板预览", logoAlt: "Sereneye 标志", legalLabel: "法律链接",

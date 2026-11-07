@@ -1,6 +1,8 @@
 // Français (les pages Support et Confidentialité ont leurs propres pages : assistance.html et confidentialite.html)
 SERENEYE_SITE["fr"] = {
   home: {
+    cmpEyebrow: "Avant / après", cmpTitle: "Le même écran. Une autre soirée.", cmpWithout: "Sans Sereneye", cmpWith: "Avec Sereneye", pageFilter: "Cette page se réchauffe quand vous la faites défiler", pageFilterToggle: "Activer ou désactiver le filtre de la page",
+    storyEyebrow: "Comment ça marche", storyTitle: "Du premier lancement à votre première soirée en douceur.", step1t: "Connectez-vous, c'est prêt", step1p: "Créez votre compte une seule fois. Sereneye s'installe ensuite dans la barre des menus, sans vous gêner.", step2t: "Lancez vos 7 jours d'essai", step2p: "Toutes les fonctions sont débloquées, sans carte bancaire. Si vous l'adoptez, gardez-la pour 2,99 €, une seule fois.", step3t: "Choisissez votre chaleur", step3p: "Cliquez sur l'icône, prenez un préréglage ou glissez le curseur. Tout votre écran suit aussitôt.", step4t: "Au coucher du soleil, elle prend le relais", step4p: "La teinte monte doucement toute seule quand le soleil descend, puis disparaît à son lever.", step5t: "Tout le reste, dans une seule fenêtre", step5p: "Pause pour vos apps photo, raccourci clavier, programmation : réglez une fois, puis n'y pensez plus.",
     title: "Sereneye — La lumière du soir, douce pour vos yeux",
     navLabel: "Navigation principale", langLabel: "Langue", lightsLabel: "Température de couleur de différentes lumières",
     panelLabel: "Aperçu du panneau Sereneye", logoAlt: "Logo de Sereneye", legalLabel: "Liens légaux",

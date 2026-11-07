@@ -1,6 +1,8 @@
 // Nederlands
 SERENEYE_SITE["nl"] = {
   home: {
+    cmpEyebrow: "Voor / na", cmpTitle: "Hetzelfde scherm. Een andere avond.", cmpWithout: "Zonder Sereneye", cmpWith: "Met Sereneye", pageFilter: "Deze pagina wordt warmer terwijl je scrolt", pageFilterToggle: "Paginafilter aan- of uitzetten",
+    storyEyebrow: "Zo werkt het", storyTitle: "Van de eerste start tot je eerste zachte avond.", step1t: "Log in en klaar", step1p: "Je maakt één keer je account aan. Daarna zit Sereneye rustig in de menubalk.", step2t: "Start je proefperiode van 7 dagen", step2p: "Alle functies zijn ontgrendeld, zonder creditcard. Bevalt het, houd het dan voor eenmalig € 2,99.", step3t: "Kies je warmte", step3p: "Klik op het pictogram, kies een voorinstelling of versleep de schuif. Je hele scherm volgt meteen.", step4t: "Bij zonsondergang neemt het over", step4p: "De tint komt vanzelf langzaam op als de zon zakt en verdwijnt bij zonsopkomst.", step5t: "Al de rest, in één venster", step5p: "Pauze voor je foto-apps, sneltoets, schema: stel het één keer in en vergeet het.",
     title: "Sereneye — Avondlicht, zacht voor je ogen",
     navLabel: "Hoofdnavigatie", langLabel: "Taal", lightsLabel: "Kleurtemperatuur van verschillende lichtbronnen",
     panelLabel: "Voorbeeld van het Sereneye-paneel", logoAlt: "Sereneye-logo", legalLabel: "Juridische links",

@@ -1,6 +1,8 @@
 // 日本語
 SERENEYE_SITE["ja"] = {
   home: {
+    cmpEyebrow: "ビフォー / アフター", cmpTitle: "同じ画面で、違う夜を。", cmpWithout: "Sereneyeなし", cmpWith: "Sereneyeあり", pageFilter: "スクロールすると、このページの色味が暖かくなります", pageFilterToggle: "ページのフィルタをオン/オフ",
+    storyEyebrow: "使い方", storyTitle: "初めての起動から、やさしい夜まで。", step1t: "サインインするだけ", step1p: "アカウント作成は一度だけ。あとはSereneyeがメニューバーに静かに常駐します。", step2t: "7日間の無料体験を開始", step2p: "すべての機能が使え、クレジットカードは不要です。気に入ったら、一度だけ2.99ユーロで使い続けられます。", step3t: "好みの暖かさを選ぶ", step3p: "アイコンをクリックして、プリセットを選ぶかスライダーを動かすと、画面全体がすぐに変わります。", step4t: "日没になると自動で", step4p: "日が沈むと色味がゆっくり自動で変わり、日の出とともに消えていきます。", step5t: "そのほかは1つのウインドウに", step5p: "写真アプリ用の一時停止、キーボードショートカット、スケジュール。一度設定すれば、あとはおまかせです。",
     title: "Sereneye — 目にやさしい、夜の光",
     navLabel: "メインナビゲーション", langLabel: "言語", lightsLabel: "さまざまな光の色温度",
     panelLabel: "Sereneyeパネルのプレビュー", logoAlt: "Sereneyeのロゴ", legalLabel: "法的情報",

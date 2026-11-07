@@ -1,6 +1,8 @@
 // 한국어
 SERENEYE_SITE["ko"] = {
   home: {
+    cmpEyebrow: "전후 비교", cmpTitle: "같은 화면, 다른 저녁.", cmpWithout: "Sereneye 없이", cmpWith: "Sereneye와 함께", pageFilter: "스크롤하면 이 페이지가 따뜻해집니다", pageFilterToggle: "페이지 필터 켜기 또는 끄기",
+    storyEyebrow: "사용 방법", storyTitle: "첫 실행부터 첫 번째 편안한 저녁까지.", step1t: "로그인하면 끝", step1p: "계정은 한 번만 만들면 됩니다. 이후 Sereneye는 메뉴 막대에서 방해 없이 머뭅니다.", step2t: "7일 무료 체험 시작", step2p: "모든 기능이 열리며 신용카드는 필요 없습니다. 마음에 들면 한 번만 2.99유로를 내고 계속 사용하세요.", step3t: "원하는 따뜻함 선택", step3p: "아이콘을 클릭하고 프리셋을 고르거나 슬라이더를 움직이면 화면 전체가 바로 바뀝니다.", step4t: "해가 지면 알아서", step4p: "해가 지면 색조가 저절로 천천히 올라오고, 해가 뜨면 사라집니다.", step5t: "나머지는 창 하나에", step5p: "사진 앱 일시 정지, 키보드 단축키, 일정: 한 번만 설정하면 더는 신경 쓸 필요가 없습니다.",
     title: "Sereneye — 눈에 편안한 저녁의 빛",
     navLabel: "주요 내비게이션", langLabel: "언어", lightsLabel: "여러 조명의 색온도",
     panelLabel: "Sereneye 패널 미리보기", logoAlt: "Sereneye 로고", legalLabel: "법적 고지",

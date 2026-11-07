@@ -1,6 +1,8 @@
 // Español
 SERENEYE_SITE["es"] = {
   home: {
+    cmpEyebrow: "Antes / después", cmpTitle: "La misma pantalla. Otra noche.", cmpWithout: "Sin Sereneye", cmpWith: "Con Sereneye", pageFilter: "Esta página se vuelve más cálida al desplazarte", pageFilterToggle: "Activar o desactivar el filtro de la página",
+    storyEyebrow: "Cómo funciona", storyTitle: "Del primer inicio a tu primera noche sin deslumbrarte.", step1t: "Inicia sesión y listo", step1p: "Crea tu cuenta una sola vez. Sereneye se queda en la barra de menús, sin molestar.", step2t: "Empieza tu prueba de 7 días", step2p: "Todas las funciones desbloqueadas, sin tarjeta. Si te gusta, quédatela por 2,99 €, una sola vez.", step3t: "Elige tu calidez", step3p: "Haz clic en el icono, elige un ajuste o mueve el control. Toda la pantalla cambia enseguida.", step4t: "Al atardecer, se encarga ella", step4p: "El tono sube despacio por sí solo cuando se pone el sol y desaparece al amanecer.", step5t: "Todo lo demás, en una ventana", step5p: "Pausa para tus apps de fotos, atajo de teclado, horario: ajústalo una vez y olvídate.",
     title: "Sereneye — La luz de la noche, suave para tus ojos",
     navLabel: "Navegación principal", langLabel: "Idioma", lightsLabel: "Temperatura de color de distintas luces",
     panelLabel: "Vista previa del panel de Sereneye", logoAlt: "Logotipo de Sereneye", legalLabel: "Enlaces legales",

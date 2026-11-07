@@ -1,6 +1,8 @@
 // Türkçe
 SERENEYE_SITE["tr"] = {
   home: {
+    cmpEyebrow: "Öncesi / sonrası", cmpTitle: "Aynı ekran. Başka bir akşam.", cmpWithout: "Sereneye olmadan", cmpWith: "Sereneye ile", pageFilter: "Bu sayfa kaydırdıkça ısınır", pageFilterToggle: "Sayfa filtresini aç veya kapat",
+    storyEyebrow: "Nasıl çalışır", storyTitle: "İlk açılıştan ilk yumuşak akşamınıza.", step1t: "Giriş yapın, hazır", step1p: "Hesabınızı bir kez oluşturun. Sonrasında Sereneye rahatsız etmeden menü çubuğunda durur.", step2t: "7 günlük denemenizi başlatın", step2p: "Tüm özellikler açık, kredi kartı gerekmez. Beğenirseniz tek seferlik 2,99 € ile sizin olur.", step3t: "Sıcaklığınızı seçin", step3p: "Simgeye tıklayın, bir hazır ayar seçin veya kaydırıcıyı sürükleyin. Tüm ekranınız hemen uyum sağlar.", step4t: "Gün batımında devreye girer", step4p: "Güneş alçalırken ton kendiliğinden yavaşça yükselir, gün doğarken kaybolur.", step5t: "Geri kalan her şey tek pencerede", step5p: "Fotoğraf uygulamaları için duraklama, klavye kısayolu, program: bir kez ayarlayın, sonra unutun.",
     title: "Sereneye — Akşam ışığı, gözlerinize nazik",
     navLabel: "Ana gezinme", langLabel: "Dil", lightsLabel: "Farklı ışıkların renk sıcaklığı",
     panelLabel: "Sereneye panelinin önizlemesi", logoAlt: "Sereneye logosu", legalLabel: "Yasal bağlantılar",

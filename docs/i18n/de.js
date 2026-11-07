@@ -1,6 +1,8 @@
 // Deutsch
 SERENEYE_SITE["de"] = {
   home: {
+    cmpEyebrow: "Vorher / nachher", cmpTitle: "Derselbe Bildschirm. Ein anderer Abend.", cmpWithout: "Ohne Sereneye", cmpWith: "Mit Sereneye", pageFilter: "Diese Seite wird beim Scrollen wärmer", pageFilterToggle: "Seitenfilter ein- oder ausschalten",
+    storyEyebrow: "So funktioniert's", storyTitle: "Vom ersten Start bis zu deinem ersten sanften Abend.", step1t: "Anmelden, fertig", step1p: "Du erstellst einmal dein Konto. Danach sitzt Sereneye in der Menüleiste und stört nicht.", step2t: "Starte deine 7 Tage Testphase", step2p: "Alle Funktionen sind freigeschaltet, ohne Kreditkarte. Wenn du es magst, behältst du es für einmalig 2,99 €.", step3t: "Wähle deine Wärme", step3p: "Klick auf das Symbol, wähle eine Voreinstellung oder zieh den Regler. Der ganze Bildschirm folgt sofort.", step4t: "Bei Sonnenuntergang übernimmt es", step4p: "Der Farbton steigt von selbst langsam an, wenn die Sonne sinkt, und verschwindet bei Sonnenaufgang.", step5t: "Alles andere in einem Fenster", step5p: "Pause für deine Foto-Apps, Tastenkürzel, Zeitplan: einmal einstellen und vergessen.",
     title: "Sereneye — Abendlicht, sanft für deine Augen",
     navLabel: "Hauptnavigation", langLabel: "Sprache", lightsLabel: "Farbtemperatur verschiedener Lichtquellen",
     panelLabel: "Vorschau des Sereneye-Panels", logoAlt: "Sereneye-Logo", legalLabel: "Rechtliche Links",

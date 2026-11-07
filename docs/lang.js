@@ -32,6 +32,8 @@ function setupLanguages(page, redirect = {}) {
     document.title = t?.title ?? title;
     document.documentElement.lang = lang;
     select.value = lang;
+    // Captures réelles de l'app, dans la langue choisie
+    document.querySelectorAll("img[data-app-img]").forEach(img => { img.src = `app/${lang}/${img.dataset.appImg}.png`; });
     // Les liens entre pages gardent la langue choisie
     document.querySelectorAll('a[href^="support.html"], a[href^="privacy.html"]').forEach(a => {
       const target = a.getAttribute("href").split("?")[0];
